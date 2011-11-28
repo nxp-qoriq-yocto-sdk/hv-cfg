@@ -318,6 +318,10 @@
 			device = "/qman-portals/qman-pool@15";
 		};
 
+		dpa-fman0-oh@1 {
+			device = "/fsl,dpaa/dpa-fman0-oh@1";
+		};
+
 		memory-controller@8000 {
 			device = "/soc/memory-controller@8000";
 		};
@@ -345,6 +349,16 @@
 		};
 		i2c@119100 {
 			device = "/soc/i2c@119100";
+		};
+
+		sata@220000 {
+			device = "/soc/sata@220000";
+			dma-window = <&dw_linux>;
+		};
+
+		sata@221000 {
+			device = "/soc/sata@221000";
+			dma-window = <&dw_linux>;
 		};
 
 		usb0 {
@@ -439,6 +453,9 @@
 			device = "pci0";
 			map-ranges;
 			dma-window = <&dw_linux>;
+		};
+		msi2 {
+			device = "msi2";
 		};
 		pci2 {
 			device = "pci2";
