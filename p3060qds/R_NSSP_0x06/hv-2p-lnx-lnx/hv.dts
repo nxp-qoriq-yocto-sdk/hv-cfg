@@ -3,7 +3,7 @@
  * (Note -- Please refer to Hypervisor SW Reference Manual
  * (Chapter 5 Configuration) for further details)
  *
- * Copyright (c) 2011 Freescale Semiconductor, Inc.
+ * Copyright 2011 Freescale Semiconductor, Inc.
  */
 
 /dts-v1/;
@@ -23,16 +23,19 @@
 		addr = <0x0 0x00000000>;	// Linux
 		size = <0x0 0x40000000>;	// 1GB
 	};
+
 	lnx2_pma: lnx2_pma {
 		compatible = "phys-mem-area";
 		addr = <0x0 0x40000000>;	// Linux
 		size = <0x0 0x10000000>;	// 256MB
 	};
+
 	images_pma: images_pma {
 		compatible = "phys-mem-area";
 		addr = <0x0 0x78000000>;	// Used for boot-from-RAM
 		size = <0x0 0x04000000>;	// 64MB
 	};
+
 	pma15: pma15 {
 		compatible = "phys-mem-area";
 		addr = <0x0 0x7c000000>;	// For MAC-less Ethernet Linux1 and Linux2
@@ -49,50 +52,58 @@
 	// DMA Windows
 	// =====================================================
 	dma-windows {
-		dw_linux1: dw_linux1 {
 		// DMA window for part1_linux
+		dw_linux1: dw_linux1 {
 			compatible = "dma-window";
 			guest-addr = <0 0>;
-			size = <0 0x80000000>; //2GB
+			size = <0 0x80000000>; // 2GB
 			subwindow-count = <4>;
+
 			sub-window@0 {
 				compatible = "dma-subwindow";
 				guest-addr = <0 0>;
 				size = <0 0x20000000>; // 512MB
 			};
+
 			sub-window@1 {
 				compatible = "dma-subwindow";
 				guest-addr = <0 0x20000000>;
 				size = <0 0x20000000>; // 512MB
 			};
+
 			sub-window@2 {		// Inter-partition region
 				compatible = "dma-subwindow";
 				guest-addr = <0 0x40000000>;
 				size = <0 0x1000000>; // 16MB
 			};
+
 			sub-window@3 {		// MSI sub-window
 				compatible = "dma-subwindow";
 				guest-addr = <0 0x60000000>;
-				size = <0 0x1000>; // 4K
+				size = <0 0x1000>; // 4KB
 				pcie-msi-subwindow;
 			};
 		};
+
 		// DMA window for part2_linux
 		dw_linux2: dw_linux2 {
 			compatible = "dma-window";
 			guest-addr = <0 0>;
-			size = <0 0x80000000>; //2GB
+			size = <0 0x80000000>; // 2GB
 			subwindow-count = <4>;
+
 			sub-window@0 {
 				compatible = "dma-subwindow";
 				guest-addr = <0 0>;
 				size = <0 0x10000000>; // 256MB
 			};
+
 			sub-window@1 {		// Inter-partition region
 				compatible = "dma-subwindow";
 				guest-addr = <0 0x40000000>;
 				size = <0 0x1000000>; // 16MB
 			};
+
 			sub-window@2 {		// MSI sub-window
 				compatible = "dma-subwindow";
 				guest-addr = <0 0x60000000>;
@@ -101,50 +112,57 @@
 			};
 		};
 
-		dw_dqrr_qportal0: window3 {
 		// DMA window for stash_dqrr for qman-portal0
+		dw_dqrr_qportal0: window3 {
 			compatible = "dma-window";
 			guest-addr = <0xf 0xf4200000>;
 			size = <0 0x4000>;
 		};
-		dw_dqrr_qportal1: window4 {
+
 		// DMA window for stash_dqrr for qman-portal1
+		dw_dqrr_qportal1: window4 {
 			compatible = "dma-window";
 			guest-addr = <0xf 0xf4204000>;
 			size = <0 0x4000>;
 		};
-		dw_dqrr_qportal4: window7 {
+
 		// DMA window for stash_dqrr for qman-portal4
+		dw_dqrr_qportal4: window7 {
 			compatible = "dma-window";
 			guest-addr = <0xf 0xf4210000>;
 			size = <0 0x4000>;
 		};
-		dw_dqrr_qportal5: window8 {
+
 		// DMA window for stash_dqrr for qman-portal5
+		dw_dqrr_qportal5: window8 {
 			compatible = "dma-window";
 			guest-addr = <0xf 0xf4214000>;
 			size = <0 0x4000>;
 		};
-		dw_dqrr_qportal6: window9 {
+
 		// DMA window for stash_dqrr for qman-portal6
+		dw_dqrr_qportal6: window9 {
 			compatible = "dma-window";
 			guest-addr = <0xf 0xf4218000>;
 			size = <0 0x4000>;
 		};
-		dw_dqrr_qportal7: window10 {
+
 		// DMA window for stash_dqrr for qman-portal7
+		dw_dqrr_qportal7: window10 {
 			compatible = "dma-window";
 			guest-addr = <0xf 0xf421c000>;
 			size = <0 0x4000>;
 		};
-		dw_dqrr_qportal8: window11 {
+
 		// DMA window for stash_dqrr for qman-portal8
+		dw_dqrr_qportal8: window11 {
 			compatible = "dma-window";
 			guest-addr = <0xf 0xf4220000>;
 			size = <0 0x4000>;
 		};
-		dw_dqrr_qportal9: window12 {
+
 		// DMA window for stash_dqrr for qman-portal9
+		dw_dqrr_qportal9: window12 {
 			compatible = "dma-window";
 			guest-addr = <0xf 0xf4224000>;
 			size = <0 0x4000>;
@@ -160,6 +178,7 @@
 	// =====================================================
 	hv: hypervisor-config {
 		compatible = "hv-config";
+
 		// phandle to byte-channel used for hypervisor's console
 		stdout = <&hvbc>;
 
@@ -168,48 +187,48 @@
 			phys-mem = <&hv_pma>;
 		};
 
+		hvbc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <0>;
+		};
+
 		// Device nodes given below are the physical I/O
 		// devices assigned to hypervisor
-
-		guts {
-			device = "/soc/global-utilities@e0000";
-		};
-
-		iommu {
-			device = "/soc/iommu";
-		};
-
-		serial0: serial0 {
-			device = "serial0";
-		};
-		serial1: serial1 {
-			device = "serial1";
-		};
-
-		mpic {
-			device = "/soc/pic@40000";
+		corenet-law {
+			device = "/soc/corenet-law";
 		};
 
 		cpc {
 			device = "/soc/l3-cache-controller";
 		};
 
-		corenet-law {
-			device = "/soc/corenet-law";
-		};
-
 		corenet-cf {
 			device = "/soc/corenet-cf";
+		};
+
+		guts {
+			device = "/soc/global-utilities@e0000";
 		};
 
 		rcpm {
 			device = "/soc/global-utilities@e2000";
 		};
 
-		hvbc: byte-channel {
-			compatible = "byte-channel";
-			endpoint = <&uartmux>;
-			mux-channel = <0>;
+		iommu {
+			device = "/soc/iommu";
+		};
+
+		mpic {
+			device = "/soc/pic@40000";
+		};
+
+		serial0: serial0 {
+			device = "serial0";
+		};
+
+		serial1: serial1 {
+			device = "serial1";
 		};
 	};
 
@@ -224,11 +243,12 @@
 	};
 
 	// =====================================================
-	// In hv-2p scenario, there are 2 Linux partitions
+	// To keep the scenarios hv-1/2/4p as diff-able as possible
+	// we always use labels part1, part2, part<n>
+	// In hv-2p scenario, there are 2 partitions - 2 Linux
 	// Partition1 --- part1 --- Linux partition
 	// Partition2 --- part2 --- Linux partition
 	// =====================================================
-
 
 	// =====================================================
 	// Partition 1
@@ -237,7 +257,8 @@
 		// Indicates that it is a partition node
 		compatible = "partition";
 		label = "p1-linux";
-		// CPU #0, #1, #4, #5, #6 are assigned to this partition
+
+		// CPUs #0, #1, #4, #5, #6 are assigned to this partition
 		cpus = <0 2 4 3>;
 		guest-image = <0xf 0xe8020000 0 0 0 0x700000>;
 		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
@@ -261,23 +282,349 @@
 			};
 		};
 
-		flash {
-			device = "/localbus";
-		};
-
 		aliases {
 			stdout = <&part1_bc0>;
 		};
 
+		// =====================================================
+		// Devices assigned to the partition - device nodes
+		// device node is child of partition node and is used to
+		// assign physical I/O devices to partition
+		// =====================================================
 		part1_bc0: byte-channel@1 {
 			compatible = "byte-channel";
 			endpoint = <&uartmux>;
 			mux-channel = <1>;
 		};
 
-		// Devices assigned to the partition - device nodes
-		// device node is child of partition node and is used to
-		// assign physical I/O devices to partition
+		// Bman portals assigned to this partition
+		bman-portal@0 {
+			device = "/bman-portals/bman-portal@0";
+			vcpu = <0>;
+		};
+
+		bman-portal@4000 {
+			device = "/bman-portals/bman-portal@4000";
+			vcpu = <1>;
+		};
+
+		bman-portal@10000 {
+			device = "/bman-portals/bman-portal@10000";
+			vcpu = <2>;
+		};
+
+		bman-portal@14000 {
+			device = "/bman-portals/bman-portal@14000";
+			vcpu = <3>;
+		};
+
+		bman-portal@18000 {
+			device = "/bman-portals/bman-portal@18000";
+			vcpu = <4>;
+		};
+
+		bman-portal@1c000 {
+			device = "/bman-portals/bman-portal@1c000";
+			vcpu = <0>;
+		};
+
+		bman-portal@24000 {
+			device = "/bman-portals/bman-portal@24000";
+			vcpu = <1>;
+		};
+
+		// Bman buffer pools assigned to this partition
+		buffer-pool@0 {
+			device = "/bman-portals/buffer-pool@0";
+		};
+
+		buffer-pool@7 {
+			device = "/bman-portals/buffer-pool@7";
+		};
+
+		buffer-pool@8 {
+			device = "/bman-portals/buffer-pool@8";
+		};
+
+		buffer-pool@9 {
+			device = "/bman-portals/buffer-pool@9";
+		};
+
+		part1_qpool1: qman-pool@1 {
+			device = "/qman-portals/qman-pool@1";
+		};
+
+		qman-portal@0 {
+			device = "/qman-portals/qman-portal@0";
+			vcpu = <0>;
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <1>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal0>;
+				operation-mapping = <0>;
+				stash-dest = <1>;
+				snoop-cpu-only;
+			};
+
+			node-update-phandle {
+				fsl,qman-pool-channels = <&part1_qpool1 &part1_qpool2 &part1_qpool3>;
+			};
+		};
+
+		qman-portal@4000 {
+			device = "/qman-portals/qman-portal@4000";
+			vcpu = <1>;
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <1>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal1>;
+				operation-mapping = <0>;
+				stash-dest = <1>;
+				snoop-cpu-only;
+			};
+
+			node-update-phandle {
+				fsl,qman-pool-channels = <&part1_qpool4 &part1_qpool5 &part1_qpool6 &part1_qpool7>;
+			};
+		};
+
+		qman-portal@10000 {
+			device = "/qman-portals/qman-portal@10000";
+			vcpu = <2>;
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <1>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal4>;
+				operation-mapping = <0>;
+				stash-dest = <1>;
+				snoop-cpu-only;
+			};
+
+			node-update-phandle {
+				fsl,qman-pool-channels = <&part1_qpool4 &part1_qpool5 &part1_qpool6 &part1_qpool7>;
+			};
+		};
+
+		qman-portal@14000 {
+			device = "/qman-portals/qman-portal@14000";
+			vcpu = <3>;
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <1>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal5>;
+				operation-mapping = <0>;
+				stash-dest = <1>;
+				snoop-cpu-only;
+			};
+
+			node-update-phandle {
+				fsl,qman-pool-channels = <&part1_qpool4 &part1_qpool5 &part1_qpool6 &part1_qpool7>;
+			};
+		};
+
+		qman-portal@18000 {
+			device = "/qman-portals/qman-portal@18000";
+			vcpu = <4>;
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <1>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal6>;
+				operation-mapping = <0>;
+				stash-dest = <1>;
+				snoop-cpu-only;
+			};
+
+			node-update-phandle {
+				fsl,qman-pool-channels = <&part1_qpool4 &part1_qpool5 &part1_qpool6 &part1_qpool7>;
+			};
+		};
+
+		qman-portal@1c000 {
+			device = "/qman-portals/qman-portal@1c000";
+			vcpu = <0>;
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <1>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal7>;
+				operation-mapping = <0>;
+				stash-dest = <1>;
+				snoop-cpu-only;
+			};
+
+			node-update-phandle {
+				fsl,qman-pool-channels = <&part1_qpool4 &part1_qpool5 &part1_qpool6 &part1_qpool7>;
+			};
+		};
+
+		qman-portal@24000 {
+			device = "/qman-portals/qman-portal@24000";
+			vcpu = <1>;
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <1>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal9>;
+				operation-mapping = <0>;
+				stash-dest = <1>;
+				snoop-cpu-only;
+			};
+
+			node-update-phandle {
+				fsl,qman-pool-channels = <&part1_qpool1 &part1_qpool2 &part1_qpool3>;
+			};
+		};
+
+		part1_qpool2: qman-pool@2 {
+			device = "/qman-portals/qman-pool@2";
+		};
+
+		part1_qpool3: qman-pool@3 {
+			device = "/qman-portals/qman-pool@3";
+		};
+
+		part1_qpool4: qman-pool@4 {
+			device = "/qman-portals/qman-pool@4";
+		};
+
+		part1_qpool5: qman-pool@5 {
+			device = "/qman-portals/qman-pool@5";
+		};
+
+		part1_qpool6: qman-pool@6 {
+			device = "/qman-portals/qman-pool@6";
+		};
+
+		part1_qpool7: qman-pool@7 {
+			device = "/qman-portals/qman-pool@7";
+		};
+
+		memory-controller@8000 {
+			device = "/soc/memory-controller@8000";
+		};
+
+		msi0 {
+			device = "msi0";
+		};
+
+		dma0 {
+			device = "dma0";
+			dma-window = <&dw_linux1>;
+		};
+
+		i2c@118000 {
+			device = "/soc/i2c@118000";
+		};
+
+		i2c@118100 {
+			device = "/soc/i2c@118100";
+		};
+
+		serial2 {
+			device = "serial2";
+		};
+
+		serial3 {
+			device = "serial3";
+		};
+
+		flash {
+			device = "/localbus";
+		};
+
+		gpio {
+			device = "/soc/gpio";
+		};
+
+		pci0 {
+			device = "pci0";
+			map-ranges;
+			dma-window = <&dw_linux1>;
+		};
+
+		usb0 {
+			device = "usb0";
+			dma-window = <&dw_linux1>;
+		};
+
+		crypto {
+			device = "/soc/crypto";
+			dma-window = <&dw_linux1>;
+		};
+
+		pme {
+			device = "pme";
+			dma-window = <&dw_linux1>;
+		};
+
+		qman {
+			device = "qman";
+			dma-window = <&dw_linux1>;
+			operation-mapping = <2>;	// OMI_QMAN_PRIV
+			stash-dest = <3>;		// L3/CPC
+		};
+
+		bman {
+			device = "bman";
+			dma-window = <&dw_linux1>;
+		};
+
+		fman0 {
+			device = "fman0";
+			dma-window = <&dw_linux1>;
+		};
+
+		fman1 {
+			device = "fman1";
+			dma-window = <&dw_linux1>;
+		};
 
 		// FMAN0 eth0 -- ethernet 0 assigned to this partition
 		dpa-ethernet@0 {
@@ -319,258 +666,25 @@
 			device = "/fsl,dpaa/ethernet@8";
 		};
 
-		// Native Linux Portal
-		bman-portal@0 {
-			device = "/bman-portals/bman-portal@0";
-			vcpu = <0>;
-		};
-
-		bman-portal@4000 {
-			device = "/bman-portals/bman-portal@4000";
-			vcpu = <1>;
-		};
-
-		bman-portal@10000 {
-			device = "/bman-portals/bman-portal@10000";
-			vcpu = <2>;
-		};
-
-		bman-portal@14000 {
-			device = "/bman-portals/bman-portal@14000";
-			vcpu = <3>;
-		};
-
-		bman-portal@18000 {
-			device = "/bman-portals/bman-portal@18000";
-			vcpu = <4>;
-		};
-
-		bman-portal@1c000 {
-			device = "/bman-portals/bman-portal@1c000";
-			vcpu = <0>;
-		};
-
-		// Native Linux Portal
-		bman-portal@24000 {
-			device = "/bman-portals/bman-portal@24000";
-			vcpu = <1>;
-		};
-
-		buffer-pool@0 {
-			device = "/bman-portals/buffer-pool@0";
-		};
-
-		buffer-pool@7 {
-			device = "/bman-portals/buffer-pool@7";
-		};
-
-		buffer-pool@8 {
-			device = "/bman-portals/buffer-pool@8";
-		};
-
-		buffer-pool@9 {
-			device = "/bman-portals/buffer-pool@9";
-		};
-
-		part1_qpool1: qman-pool@1 {
-			device = "/qman-portals/qman-pool@1";
-		};
-		part1_qpool2: qman-pool@2 {
-			device = "/qman-portals/qman-pool@2";
-		};
-		part1_qpool3: qman-pool@3 {
-			device = "/qman-portals/qman-pool@3";
-		};
-		part1_qpool4: qman-pool@4 {
-			device = "/qman-portals/qman-pool@4";
-		};
-		part1_qpool5: qman-pool@5 {
-			device = "/qman-portals/qman-pool@5";
-		};
-		part1_qpool6: qman-pool@6 {
-			device = "/qman-portals/qman-pool@6";
-		};
-		part1_qpool7: qman-pool@7 {
-			device = "/qman-portals/qman-pool@7";
-		};
-
 		portal-devices {
 			fman0 {
 				device = "fman0";
 				dma-window = <&dw_linux1>;
 			};
+
 			fman1 {
 				device = "fman1";
 				dma-window = <&dw_linux1>;
 			};
+
 			caam {
 				device = "crypto";
 				dma-window = <&dw_linux1>;
 			};
+
 			pme {
 				device = "pme";
 				dma-window = <&dw_linux1>;
-			};
-		};
-
-		qportal0: qman-portal@0 {
-			device = "/qman-portals/qman-portal@0";
-			vcpu = <0>;
-
-			stash-mem {
-				liodn-index = <1>;
-				dma-window = <&dw_linux1>;
-				operation-mapping = <0>;	// OMI_QMAN
-				stash-dest = <1>;
-			};
-
-			stash-dqrr {
-				liodn-index = <0>;
-				dma-window = <&dw_dqrr_qportal0>;
-				operation-mapping = <0>;	// OMI_QMAN
-				stash-dest = <1>;
-				snoop-cpu-only;
-			};
-			node-update-phandle {
-				fsl,qman-pool-channels = <&part1_qpool1 &part1_qpool2 &part1_qpool3>;
-			};
-		};
-
-		qman-portal@4000 {
-			device = "/qman-portals/qman-portal@4000";
-			vcpu = <1>;
-
-			stash-mem {
-				liodn-index = <1>;
-				dma-window = <&dw_linux1>;
-				operation-mapping = <0>;	// OMI_QMAN
-				stash-dest = <1>;
-			};
-
-			stash-dqrr {
-				liodn-index = <0>;
-				dma-window = <&dw_dqrr_qportal1>;
-				operation-mapping = <0>;	// OMI_QMAN
-				stash-dest = <1>;
-				snoop-cpu-only;
-			};
-			node-update-phandle {
-				fsl,qman-pool-channels = <&part1_qpool4 &part1_qpool5 &part1_qpool6 &part1_qpool7>;
-			};
-		};
-
-		qman-portal@10000 {
-			device = "/qman-portals/qman-portal@10000";
-			vcpu = <2>;
-
-			stash-mem {
-				liodn-index = <1>;
-				dma-window = <&dw_linux1>;
-				operation-mapping = <0>;	// OMI_QMAN
-				stash-dest = <1>;
-			};
-
-			stash-dqrr {
-				liodn-index = <0>;
-				dma-window = <&dw_dqrr_qportal4>;
-				operation-mapping = <0>;	// OMI_QMAN
-				stash-dest = <1>;
-				snoop-cpu-only;
-			};
-			node-update-phandle {
-				fsl,qman-pool-channels = <&part1_qpool4 &part1_qpool5 &part1_qpool6 &part1_qpool7>;
-			};
-		};
-
-		qman-portal@14000 {
-			device = "/qman-portals/qman-portal@14000";
-			vcpu = <3>;
-
-			stash-mem {
-				liodn-index = <1>;
-				dma-window = <&dw_linux1>;
-				operation-mapping = <0>;	// OMI_QMAN
-				stash-dest = <1>;
-			};
-
-			stash-dqrr {
-				liodn-index = <0>;
-				dma-window = <&dw_dqrr_qportal5>;
-				operation-mapping = <0>;	// OMI_QMAN
-				stash-dest = <1>;
-				snoop-cpu-only;
-			};
-			node-update-phandle {
-				fsl,qman-pool-channels = <&part1_qpool4 &part1_qpool5 &part1_qpool6 &part1_qpool7>;
-			};
-		};
-
-		qman-portal@18000 {
-			device = "/qman-portals/qman-portal@18000";
-			vcpu = <4>;
-
-			stash-mem {
-				liodn-index = <1>;
-				dma-window = <&dw_linux1>;
-				operation-mapping = <0>;	// OMI_QMAN
-				stash-dest = <1>;
-			};
-
-			stash-dqrr {
-				liodn-index = <0>;
-				dma-window = <&dw_dqrr_qportal6>;
-				operation-mapping = <0>;	// OMI_QMAN
-				stash-dest = <1>;
-				snoop-cpu-only;
-			};
-			node-update-phandle {
-				fsl,qman-pool-channels = <&part1_qpool4 &part1_qpool5 &part1_qpool6 &part1_qpool7>;
-			};
-		};
-
-		qman-portal@1c000 {
-			device = "/qman-portals/qman-portal@1c000";
-			vcpu = <0>;
-
-			stash-mem {
-				liodn-index = <1>;
-				dma-window = <&dw_linux1>;
-				operation-mapping = <0>;	// OMI_QMAN
-				stash-dest = <1>;
-			};
-
-			stash-dqrr {
-				liodn-index = <0>;
-				dma-window = <&dw_dqrr_qportal7>;
-				operation-mapping = <0>;	// OMI_QMAN
-				stash-dest = <1>;
-				snoop-cpu-only;
-			};
-			node-update-phandle {
-				fsl,qman-pool-channels = <&part1_qpool4 &part1_qpool5 &part1_qpool6 &part1_qpool7>;
-			};
-		};
-
-		qman-portal@24000 {
-			device = "/qman-portals/qman-portal@24000";
-			vcpu = <1>;
-
-			stash-mem {
-				liodn-index = <1>;
-				dma-window = <&dw_linux1>;
-				operation-mapping = <0>;	// OMI_QMAN
-				stash-dest = <1>;
-			};
-
-			stash-dqrr {
-				liodn-index = <0>;
-				dma-window = <&dw_dqrr_qportal9>;
-				operation-mapping = <0>;	// OMI_QMAN
-				stash-dest = <1>;
-				snoop-cpu-only;
-			};
-			node-update-phandle {
-				fsl,qman-pool-channels = <&part1_qpool1 &part1_qpool2 &part1_qpool3>;
 			};
 		};
 
@@ -581,12 +695,14 @@
 				fsl,bpool-ethernet-cfg = <0 0x80 0 192 0 0x40000000>;
 				fsl,bpool-ethernet-seeds;
 			};
+
 			part1_bp11: buffer-pool@11 {
 				compatible = "fsl,p3060-bpool", "fsl,bpool";
 				fsl,bpid = <11>;
 				fsl,bpool-ethernet-cfg = <0 0x80 0 576 0 0x40006000>;
 				fsl,bpool-ethernet-seeds;
 			};
+
 			part1_bp12: buffer-pool@12 {
 				compatible = "fsl,p3060-bpool", "fsl,bpool";
 				fsl,bpid = <12>;
@@ -597,10 +713,10 @@
 			// Add a subnode dpa-ethernet@10 in fsl,dpaa node in GDT
 			fsl,dpaa {
 				dpa-ethernet@10 {	// Link with Linux2
-				compatible = "fsl,p3060-dpa-ethernet", "fsl,dpa-ethernet";
-				fsl,qman-frame-queues-rx = <0x4000 8>;
-				fsl,qman-frame-queues-tx = <0x4008 8>;
-				local-mac-address = [30 60 c0 a8 6f fe];
+					compatible = "fsl,p3060-dpa-ethernet", "fsl,dpa-ethernet";
+					fsl,qman-frame-queues-rx = <0x4000 8>;
+					fsl,qman-frame-queues-tx = <0x4008 8>;
+					local-mac-address = [30 60 c0 a8 6f fe];
 				};
 			};
 		};
@@ -618,81 +734,6 @@
 		dpa-fman0-oh@1 {
 			device = "/fsl,dpaa/dpa-fman0-oh@1";
 		};
-
-		memory-controller@8000 {
-			device = "/soc/memory-controller@8000";
-		};
-
-		dma0 {
-			device = "dma0";
-			dma-window = <&dw_linux1>;
-		};
-
-		i2c@118000 {
-			device = "/soc/i2c@118000";
-		};
-
-		i2c@118100 {
-			device = "/soc/i2c@118100";
-		};
-
-		serial2: serial2 {
-			device = "serial2";
-		};
-		serial3: serial3 {
-			device = "serial3";
-		};
-		usb0 {
-			device = "usb0";
-			dma-window = <&dw_linux1>;
-		};
-
-		crypto {
-			device = "crypto";
-			dma-window = <&dw_linux1>;
-		};
-
-		pme {
-			device = "pme";
-			dma-window = <&dw_linux1>;
-		};
-
-		qman {
-			device = "qman";
-			dma-window = <&dw_linux1>;
-			operation-mapping = <2>;  // OMI_QMAN_PRIV
-			stash-dest = <3>;   // L3/CPC
-		};
-
-		bman {
-			device = "bman";
-			dma-window = <&dw_linux1>;
-		};
-
-		gpio {
-			device = "/soc/gpio";
-		};
-
-		fman0 {
-			device = "fman0";
-			dma-window = <&dw_linux1>;
-		};
-
-		fman1 {
-			device = "fman1";
-			dma-window = <&dw_linux1>;
-		};
-
-		msi0 {
-			device = "msi0";
-		};
-
-		pci0 {
-			device = "pci0";
-			map-ranges;
-			dma-window = <&dw_linux1>;
-		};
-
 	};
 
 	// =====================================================
@@ -701,6 +742,7 @@
 	part2 {
 		compatible = "partition";
 		label = "p2-linux";
+		// CPU #7 is assigned to this partition
 		cpus = <7 1>;
 		guest-image = <0xf 0xe8020000 0 0 0 0x700000>;
 		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
@@ -728,10 +770,69 @@
 			stdout = <&part2_bc0>;
 		};
 
+		// =====================================================
+		// Devices assigned to the partition - device nodes
+		// device node is child of partition node and is used to
+		// assign physical I/O devices to partition
+		// =====================================================
 		part2_bc0: byte-channel@2 {
 			compatible = "byte-channel";
 			endpoint = <&uartmux>;
 			mux-channel = <2>;
+		};
+
+		bman-portal@20000 {
+			device = "/bman-portals/bman-portal@20000";
+			vcpu = <0>;
+			node-update {
+				delete-prop = "fsl,usdpaa-portal";
+			};
+
+		};
+
+		part2_qportal8: qman-portal@20000 {
+			device = "/qman-portals/qman-portal@20000";
+			vcpu = <0>;
+
+			node-update {
+				delete-prop = "fsl,usdpaa-portal";
+				delete-node = "rman@0", "fman@0", "fman@1", "pme@0", "crypto@0";
+			};
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux2>;
+				operation-mapping = <0>;
+				stash-dest = <1>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal8>;
+				operation-mapping = <0>;
+				stash-dest = <1>;
+				snoop-cpu-only;
+			};
+
+			node-update-phandle {
+				fsl,qman-pool-channels = <&part2_qpool8 &part2_qpool9 &part2_qpool10 &part2_qpool11>;
+			};
+		};
+
+		part2_qpool8: qman-pool@8 {
+			device = "/qman-portals/qman-pool@8";
+		};
+
+		part2_qpool9: qman-pool@9 {
+			device = "/qman-portals/qman-pool@9";
+		};
+
+		part2_qpool10: qman-pool@10 {
+			device = "/qman-portals/qman-pool@10";
+		};
+
+		part2_qpool11: qman-pool@11 {
+			device = "/qman-portals/qman-pool@11";
 		};
 
 		dma1 {
@@ -747,30 +848,25 @@
 			device = "/soc/i2c@119100";
 		};
 
-		bman-portal@20000 {
-			device = "/bman-portals/bman-portal@20000";
-			vcpu = <0>;
-			node-update {
-				delete-prop = "fsl,usdpaa-portal";
-			};
-
-		};
 		node-update {
 			part2_bp10: buffer-pool@10 {
 				compatible = "fsl,p3060-bpool", "fsl,bpool";
 				fsl,bpid = <10>;
 				fsl,bpool-ethernet-cfg = <0 0x80 0 192 0 0x40000000>;
 			};
+
 			part2_bp11: buffer-pool@11 {
 				compatible = "fsl,p3060-bpool", "fsl,bpool";
 				fsl,bpid = <11>;
 				fsl,bpool-ethernet-cfg = <0 0x80 0 576 0 0x40006000>;
 			};
+
 			part2_bp12: buffer-pool@12 {
 				compatible = "fsl,p3060-bpool", "fsl,bpool";
 				fsl,bpid = <12>;
 				fsl,bpool-ethernet-cfg = <0 0x80 0 1600 0 0x40018000>;
 			};
+
 			fsl,dpaa {
 				compatible = "fsl,p3060-dpaa", "fsl,dpaa";
 				dpa-ethernet@10 {	// Link with Linux1
@@ -781,6 +877,7 @@
 				};
 			};
 		};
+
 		node-update-phandle {
 			fsl,dpaa {
 				dpa-ethernet@10 {
@@ -788,46 +885,6 @@
 					fsl,bman-buffer-pools = <&part2_bp10 &part2_bp11 &part2_bp12>;
 				};
 			};
-		};
-
-		part2_qportal8: qman-portal@20000 {
-			device = "/qman-portals/qman-portal@20000";
-			vcpu = <0>;
-
-			node-update {
-				delete-prop = "fsl,usdpaa-portal";
-				delete-node = "rman@0", "fman@0", "fman@1", "pme@0", "crypto@0";
-			};
-			stash-mem {
-				liodn-index = <1>;
-				dma-window = <&dw_linux2>;
-				operation-mapping = <0>;	// OMI_QMAN
-				stash-dest = <1>;
-			};
-
-			stash-dqrr {
-				liodn-index = <0>;
-				dma-window = <&dw_dqrr_qportal8>;
-				operation-mapping = <0>;	// OMI_QMAN
-				stash-dest = <1>;
-				snoop-cpu-only;
-			};
-
-			node-update-phandle {
-				fsl,qman-pool-channels = <&part2_qpool8 &part2_qpool9 &part2_qpool10 &part2_qpool11>;
-			};
-		};
-		part2_qpool8: qman-pool@8 {
-			device = "/qman-portals/qman-pool@8";
-		};
-		part2_qpool9: qman-pool@9 {
-			device = "/qman-portals/qman-pool@9";
-		};
-		part2_qpool10: qman-pool@10 {
-			device = "/qman-portals/qman-pool@10";
-		};
-		part2_qpool11: qman-pool@11 {
-			device = "/qman-portals/qman-pool@11";
 		};
 	};
 };
