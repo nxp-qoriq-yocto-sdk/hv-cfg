@@ -693,13 +693,43 @@
 				fsl,bpool-ethernet-seeds;
 			};
 
+			part1_bp13: buffer-pool@13 {
+				compatible = "fsl,p4080-bpool", "fsl,bpool";
+				fsl,bpid = <13>;
+				fsl,bpool-ethernet-cfg = <0 0x80 0 192 0 0x8004A000>;
+				fsl,bpool-ethernet-seeds;
+			};
+
+			part1_bp14: buffer-pool@14 {
+				compatible = "fsl,p4080-bpool", "fsl,bpool";
+				fsl,bpid = <14>;
+				fsl,bpool-ethernet-cfg = <0 0x80 0 576 0 0x80050000>;
+				fsl,bpool-ethernet-seeds;
+			};
+
+			part1_bp15: buffer-pool@15 {
+				compatible = "fsl,p4080-bpool", "fsl,bpool";
+				fsl,bpid = <15>;
+				fsl,bpool-ethernet-cfg = <0 0x80 0 1600 0 0x80062000>;
+				fsl,bpool-ethernet-seeds;
+			};
+
 			// Add a subnode dpa-ethernet@10 in fsl,dpaa node in GDT
 			fsl,dpaa {
-				dpa-ethernet@10 {	// Link with Linux2
+				// Link with Linux2 (MAC-less)
+				dpa-ethernet@10 {
 					compatible = "fsl,p4080-dpa-ethernet", "fsl,dpa-ethernet";
 					fsl,qman-frame-queues-rx = <0x4000 8>;
 					fsl,qman-frame-queues-tx = <0x4008 8>;
 					local-mac-address = [02 00 c0 a8 6f fe];
+				};
+
+				// Shared with Linux2 (Shared-MAC)
+				// The interface has to be set to promiscuous mode!
+				dpa-ethernet@1 {
+					compatible = "fsl,p4080-dpa-ethernet", "fsl,dpa-ethernet";
+					fsl,qman-frame-queues-rx = <0x230 1 0x231 1 0x210 3>;
+					fsl,qman-frame-queues-tx = <0x234 1 0x238 1 0x200 8>;
 				};
 			};
 
@@ -713,6 +743,10 @@
 			fsl,dpaa {
 				dpa-ethernet@10 {
 					fsl,bman-buffer-pools = <&part1_bp10 &part1_bp11 &part1_bp12>;
+				};
+
+				dpa-ethernet@1 {
+					fsl,bman-buffer-pools = <&part1_bp13 &part1_bp14 &part1_bp15>;
 				};
 			};
 		};
@@ -892,13 +926,52 @@
 				fsl,bpool-ethernet-cfg = <0 0x80 0 1600 0 0x80018000>;
 			};
 
+			part2_bp13: buffer-pool@13 {
+				compatible = "fsl,p4080-bpool", "fsl,bpool";
+				fsl,bpid = <13>;
+				fsl,bpool-ethernet-cfg = <0 0x80 0 192 0 0x8004A000>;
+			};
+
+			part2_bp14: buffer-pool@14 {
+				compatible = "fsl,p4080-bpool", "fsl,bpool";
+				fsl,bpid = <14>;
+				fsl,bpool-ethernet-cfg = <0 0x80 0 576 0 0x80050000>;
+			};
+
+			part2_bp15: buffer-pool@15 {
+				compatible = "fsl,p4080-bpool", "fsl,bpool";
+				fsl,bpid = <15>;
+				fsl,bpool-ethernet-cfg = <0 0x80 0 1600 0 0x80062000>;
+			};
+
 			fsl,dpaa {
 				compatible = "fsl,p4080-dpaa", "fsl,dpaa";
-				dpa-ethernet@10 {	// Link with Linux1
+
+				// =====================================================
+				// Link with Linux1 (MAC-less)
+				// The TX/RX queues of this interface are same with the
+				// RX/TX queues of the interface dpa-ethernet@10 in
+				// partition 1
+				// =====================================================
+				dpa-ethernet@10 {
 					compatible = "fsl,p4080-dpa-ethernet", "fsl,dpa-ethernet";
 					fsl,qman-frame-queues-rx = <0x4008 8>;
 					fsl,qman-frame-queues-tx = <0x4000 8>;
 					local-mac-address = [02 00 c0 a8 79 fe];
+				};
+
+				// =====================================================
+				// Shared with Linux1 (Shared-MAC)
+				// The TX queues of this interface are the same with the
+				// TX queues of the interface dpa-ethernet@1 in
+				// partition 1; the RX queues are different
+				// =====================================================
+				dpa-ethernet@20 {
+					compatible = "fsl,p4080-dpa-ethernet", "fsl,dpa-ethernet";
+					fsl,qman-frame-queues-rx = <0x220 3>;
+					fsl,qman-frame-queues-tx = <0x200 8>;
+					delete-prop = "fsl,fman-mac";
+					local-mac-address = [02 00 c0 a8 a1 fe];
 				};
 			};
 			chosen {
@@ -910,6 +983,10 @@
 			fsl,dpaa {
 				dpa-ethernet@10 {
 					fsl,bman-buffer-pools = <&part2_bp10 &part2_bp11 &part2_bp12>;
+				};
+
+				dpa-ethernet@20 {
+					fsl,bman-buffer-pools = <&part2_bp13 &part2_bp14 &part2_bp15>;
 				};
 			};
 		};
