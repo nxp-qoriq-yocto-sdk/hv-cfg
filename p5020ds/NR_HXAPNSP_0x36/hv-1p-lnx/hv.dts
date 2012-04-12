@@ -205,109 +205,42 @@
 			vcpu = <1>;
 		};
 
-		buffer-pool@0 {
-			device = "/bman-portals/buffer-pool@0";
-		};
-
 		qman-portal@0 {
-			device = "/qman-portals/qman-portal@0";
+			device = "/qman-portals@ff4200000/qman-portal@0";
 			vcpu = <0>;
 
 			stash-mem {
 				liodn-index = <1>;
 				dma-window = <&dw_linux>;
 				operation-mapping = <0>;
-				stash-dest = <1>;
+				stash-dest = <3>;
 			};
 
 			stash-dqrr {
 				liodn-index = <0>;
 				dma-window = <&dw_dqrr_qportal0>;
 				operation-mapping = <0>;
-				stash-dest = <1>;
-				snoop-cpu-only;
+				stash-dest = <3>;
 			};
 		};
 
 		qman-portal@4000 {
-			device = "/qman-portals/qman-portal@4000";
+			device = "/qman-portals@ff4200000/qman-portal@4000";
 			vcpu = <1>;
 
 			stash-mem {
 				liodn-index = <1>;
 				dma-window = <&dw_linux>;
 				operation-mapping = <0>;
-				stash-dest = <1>;
+				stash-dest = <3>;
 			};
 
 			stash-dqrr {
 				liodn-index = <0>;
 				dma-window = <&dw_dqrr_qportal1>;
 				operation-mapping = <0>;
-				stash-dest = <1>;
-				snoop-cpu-only;
+				stash-dest = <3>;
 			};
-		};
-
-		// Qman pools assigned to this partition
-		part1_qpool1: qman-pool@1 {
-			device = "/qman-portals/qman-pool@1";
-		};
-
-		part1_qpool2: qman-pool@2 {
-			device = "/qman-portals/qman-pool@2";
-		};
-
-		part1_qpool3: qman-pool@3 {
-			device = "/qman-portals/qman-pool@3";
-		};
-
-		part1_qpool4: qman-pool@4 {
-			device = "/qman-portals/qman-pool@4";
-		};
-
-		part1_qpool5: qman-pool@5 {
-			device = "/qman-portals/qman-pool@5";
-		};
-
-		part1_qpool6: qman-pool@6 {
-			device = "/qman-portals/qman-pool@6";
-		};
-
-		part1_qpool7: qman-pool@7 {
-			device = "/qman-portals/qman-pool@7";
-		};
-
-		part1_qpool8: qman-pool@8 {
-			device = "/qman-portals/qman-pool@8";
-		};
-
-		part1_qpool9: qman-pool@9 {
-			device = "/qman-portals/qman-pool@9";
-		};
-
-		part1_qpool10: qman-pool@10 {
-			device = "/qman-portals/qman-pool@10";
-		};
-
-		part1_qpool11: qman-pool@11 {
-			device = "/qman-portals/qman-pool@11";
-		};
-
-		part1_qpool12: qman-pool@12 {
-			device = "/qman-portals/qman-pool@12";
-		};
-
-		part1_qpool13: qman-pool@13 {
-			device = "/qman-portals/qman-pool@13";
-		};
-
-		part1_qpool14: qman-pool@14 {
-			device = "/qman-portals/qman-pool@14";
-		};
-
-		part1_qpool15: qman-pool@15 {
-			device = "/qman-portals/qman-pool@15";
 		};
 
 		memory-controller@8000 {
@@ -479,8 +412,30 @@
 			};
 		};
 
+		node-update {
+			chosen {
+				bootargs = "usdpaa_mem=64M";
+			};
+		};
+
 		dpa-fman0-oh@1 {
 			device = "/fsl,dpaa/dpa-fman0-oh@1";
+		};
+
+		bman-bpids {
+			device = "/bman-portals@ff4000000/bman-bpids@0";
+		};
+
+		qman-fqids {
+			device = "qman-portals@ff4200000/qman-fqids@0";
+		};
+
+		qman-pools {
+			device = "/qman-portals@ff4200000/qman-pools@0";
+		};
+
+		qman-cgrids {
+			device = "/qman-portals@ff4200000/qman-cgrids@0";
 		};
 	};
 };
