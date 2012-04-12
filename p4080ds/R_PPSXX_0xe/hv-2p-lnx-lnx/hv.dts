@@ -812,7 +812,7 @@
 
 			node-update {
 				delete-prop = "fsl,usdpaa-portal";
-				delete-node = "fman@0", "fman@1", "pme@0", "crypto@0";
+				delete-node = "pme@0", "crypto@0";
 			};
 
 			stash-mem {
@@ -827,6 +827,25 @@
 				dma-window = <&dw_dqrr_qportal7>;
 				operation-mapping = <0>;
 				stash-dest = <3>;
+			};
+		};
+
+		// =====================================================
+		// In Shared-MAC scenario, PAMU is using Fman's LIODN in 
+		// order to authorize tranzactions for the second 
+		// partition, thus the fman node have to be included in 
+		// the second partition, so that PAMU to be configured 
+		// accordingly.
+		// =====================================================
+		portal-devices {
+			fman0 {
+				device = "fman0";
+				dma-window = <&dw_linux2>;
+			};
+
+			fman1 {
+				device = "fman1";
+				dma-window = <&dw_linux2>;
 			};
 		};
 
