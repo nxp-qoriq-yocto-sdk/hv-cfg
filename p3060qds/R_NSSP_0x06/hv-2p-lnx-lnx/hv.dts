@@ -849,6 +849,17 @@
 		};
 
 		node-update {
+			// =====================================================
+			// Even though it's part1 that seeds these buffer pools,
+			// their "fsl,bpool-ethernet-cfg" properties must match
+			// those in part1 exactly, since the resulting buffer
+			// addresses will be exchanged between the partitions
+			// through QMan, via FDs, without further translation.
+			// Furthermore, the addresses must be mapable in both
+			// guests, and, when mapped on either guest,
+			// each should point to the same physical memory,
+			// otherwise a segfault/machine check will occur.
+			// =====================================================
 			part2_bp10: buffer-pool@10 {
 				compatible = "fsl,p3060-bpool", "fsl,bpool";
 				fsl,bpid = <10>;
