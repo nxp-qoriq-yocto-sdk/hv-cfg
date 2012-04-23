@@ -280,27 +280,22 @@
 		// Bman portals assigned to this partition
 		bman-portal@0 {
 			device = "/bman-portals/bman-portal@0";
-			vcpu = <0>;
 		};
 
 		bman-portal@4000 {
 			device = "/bman-portals/bman-portal@4000";
-			vcpu = <1>;
 		};
 
 		bman-portal@10000 {
 			device = "/bman-portals/bman-portal@10000";
-			vcpu = <0>;
 		};
 
 		bman-portal@14000 {
 			device = "/bman-portals/bman-portal@14000";
-			vcpu = <1>;
 		};
 
 		bman-portal@18000 {
 			device = "/bman-portals/bman-portal@18000";
-			vcpu = <2>;
 		};
 
 		// Bman buffer pools assigned to this partition
@@ -318,7 +313,6 @@
 
 		qman-portal@0 {
 			device = "/qman-portals@ff4200000/qman-portal@0";
-			vcpu = <0>;
 
 			node-update {
 				delete-node = "rman@0";
@@ -341,7 +335,6 @@
 
 		qman-portal@4000 {
 			device = "/qman-portals@ff4200000/qman-portal@4000";
-			vcpu = <1>;
 
 			node-update {
 				delete-node = "rman@0";
@@ -364,7 +357,6 @@
 
 		qman-portal@10000 {
 			device = "/qman-portals@ff4200000/qman-portal@10000";
-			vcpu = <0>;
 
 			node-update {
 				delete-node = "rman@0";
@@ -387,7 +379,6 @@
 
 		qman-portal@14000 {
 			device = "/qman-portals@ff4200000/qman-portal@14000";
-			vcpu = <1>;
 
 			node-update {
 				delete-node = "rman@0";
@@ -410,7 +401,6 @@
 
 		qman-portal@18000 {
 			device = "/qman-portals@ff4200000/qman-portal@18000";
-			vcpu = <2>;
 
 			node-update {
 				delete-node = "rman@0";
@@ -706,7 +696,6 @@
 
 		bman-portal@1c000 {
 			device = "/bman-portals/bman-portal@1c000";
-			vcpu = <0>;
 			node-update {
 				delete-prop = "fsl,usdpaa-portal";
 			};
@@ -714,7 +703,6 @@
 
 		part2_qportal7: qman-portal@1c000 {
 			device = "/qman-portals@ff4200000/qman-portal@1c000";
-			vcpu = <0>;
 
 			node-update {
 				delete-prop = "fsl,usdpaa-portal";

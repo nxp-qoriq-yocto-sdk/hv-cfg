@@ -197,17 +197,14 @@
 		// Bman portals assigned to this partition
 		bman-portal@0 {
 			device = "/bman-portals/bman-portal@0";
-			vcpu = <0>;
 		};
 
 		bman-portal@4000 {
 			device = "/bman-portals/bman-portal@4000";
-			vcpu = <1>;
 		};
 
 		qman-portal@0 {
 			device = "/qman-portals@ff4200000/qman-portal@0";
-			vcpu = <0>;
 
 			stash-mem {
 				liodn-index = <1>;
@@ -226,7 +223,6 @@
 
 		qman-portal@4000 {
 			device = "/qman-portals@ff4200000/qman-portal@4000";
-			vcpu = <1>;
 
 			stash-mem {
 				liodn-index = <1>;
