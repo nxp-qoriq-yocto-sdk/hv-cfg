@@ -532,11 +532,11 @@
 			device = "/soc/memory-controller@9000";
 		};
 
-		msi0 {
+		msi0: msi@41600 {
 			device = "msi0";
 		};
 
-		msi2 {
+		msi2: msi@41a00 {
 			device = "msi2";
 		};
 
@@ -570,12 +570,18 @@
 			device = "pci0";
 			map-ranges;
 			dma-window = <&dw_linux1>;
+			node-update-phandle {
+				fsl,msi = <&msi0>;
+			};
 		};
 
 		pci2 {
 			device = "pci2";
 			map-ranges;
 			dma-window = <&dw_linux1>;
+			node-update-phandle {
+				fsl,msi = <&msi2>;
+			};
 		};
 
 		usb0 {
