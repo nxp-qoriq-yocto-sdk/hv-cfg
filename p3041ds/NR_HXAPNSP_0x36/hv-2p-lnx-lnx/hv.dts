@@ -679,7 +679,7 @@
 		};
 
 		qman-fqids {
-			device = "qman-portals@ff4200000/qman-fqids@0";
+			device = "/qman-portals@ff4200000/qman-fqids@0";
 
 			node-update {
 				fsl,fqid-range = <0x180 0x80>;
@@ -845,7 +845,7 @@
 		};
 
 		qman-fqids {
-			device = "qman-portals@ff4200000/qman-fqids@0";
+			device = "/qman-portals@ff4200000/qman-fqids@0";
 
 			node-update {
 				fsl,fqid-range = <0x100 0x80>;

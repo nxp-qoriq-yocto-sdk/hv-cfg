@@ -381,7 +381,7 @@
 		};
 
 		qman-portal@4000 {
-			device = "/qman-portals/qman-portal@4000";
+			device = "/qman-portals@ff4200000/qman-portal@4000";
 
 			stash-mem {
 				liodn-index = <1>;
@@ -399,7 +399,7 @@
 		};
 
 		qman-portal@8000 {
-			device = "/qman-portals/qman-portal@8000";
+			device = "/qman-portals@ff4200000/qman-portal@8000";
 
 			stash-mem {
 				liodn-index = <1>;
@@ -417,7 +417,7 @@
 		};
 
 		qman-portal@c000 {
-			device = "/qman-portals/qman-portal@c000";
+			device = "/qman-portals@ff4200000/qman-portal@c000";
 
 			stash-mem {
 				liodn-index = <1>;
@@ -435,7 +435,7 @@
 		};
 
 		qman-portal@10000 {
-			device = "/qman-portals/qman-portal@10000";
+			device = "/qman-portals@ff4200000/qman-portal@10000";
 
 			stash-mem {
 				liodn-index = <1>;
@@ -453,7 +453,7 @@
 		};
 
 		qman-portal@14000 {
-			device = "/qman-portals/qman-portal@14000";
+			device = "/qman-portals@ff4200000/qman-portal@14000";
 
 			stash-mem {
 				liodn-index = <1>;
@@ -471,7 +471,7 @@
 		};
 
 		qman-portal@18000 {
-			device = "/qman-portals/qman-portal@18000";
+			device = "/qman-portals@ff4200000/qman-portal@18000";
 
 			stash-mem {
 				liodn-index = <1>;
@@ -489,7 +489,7 @@
 		};
 
 		qman-portal@20000 {
-			device = "/qman-portals/qman-portal@20000";
+			device = "/qman-portals@ff4200000/qman-portal@20000";
 
 			stash-mem {
 				liodn-index = <1>;
@@ -507,7 +507,7 @@
 		};
 
 		qman-portal@24000 {
-			device = "/qman-portals/qman-portal@24000";
+			device = "/qman-portals@ff4200000/qman-portal@24000";
 
 			stash-mem {
 				liodn-index = <1>;
@@ -721,7 +721,7 @@
 		};
 
 		qman-fqids {
-			device = "qman-portals@ff4200000/qman-fqids@0";
+			device = "/qman-portals@ff4200000/qman-fqids@0";
 
 			node-update {
 				fsl,fqid-range = <0x180 0x80>;
@@ -799,7 +799,7 @@
 		};
 
 		part2_qportal7: qman-portal@1c000 {
-			device = "/qman-portals/qman-portal@1c000";
+			device = "/qman-portals@ff4200000/qman-portal@1c000";
 
 			node-update {
 				delete-prop = "fsl,usdpaa-portal";
@@ -895,7 +895,7 @@
 		};
 
 		qman-fqids {
-			device = "qman-portals@ff4200000/qman-fqids@0";
+			device = "/qman-portals@ff4200000/qman-fqids@0";
 
 			node-update {
 				fsl,fqid-range = <0x100 0x80>;

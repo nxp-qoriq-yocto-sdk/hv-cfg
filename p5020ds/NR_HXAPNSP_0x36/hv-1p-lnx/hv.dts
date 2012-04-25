@@ -423,7 +423,7 @@
 		};
 
 		qman-fqids {
-			device = "qman-portals@ff4200000/qman-fqids@0";
+			device = "/qman-portals@ff4200000/qman-fqids@0";
 		};
 
 		qman-pools {
