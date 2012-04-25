@@ -54,7 +54,7 @@
 			sub-window@1 {		// MSI sub-window
 				compatible = "dma-subwindow";
 				guest-addr = <0 0x40000000>;
-				size = <0 0x20000000>; // 512MB
+				size = <0 0x1000>; // 4KB
 				pcie-msi-subwindow;
 			};
 

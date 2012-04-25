@@ -65,17 +65,27 @@
 				size = <0 0x40000000>; // 1GB
 			};
 
-			sub-window@1 {		// Inter-partition region
+			// ====================================================
+			// The window is used for MSIIR translation. The
+			// hypervisor sets  a property in the guest device tree
+			// (msi-address-64) which indicates the guest physical
+			// address of the MSIIR register.
+			// This address must be in the next page after the end
+			// of DDR as seen by the guest. This is because, Linux
+			// is extending the DDR ATMU with one page in order to
+			// cover the MSIIR register.
+			// ====================================================
+			sub-window@1 {		// MSI sub-window
 				compatible = "dma-subwindow";
 				guest-addr = <0 0x40000000>;
-				size = <0 0x1000000>; // 16MB
-			};
-
-			sub-window@2 {		// MSI sub-window
-				compatible = "dma-subwindow";
-				guest-addr = <0 0x80000000>;
 				size = <0 0x1000>; // 4KB
 				pcie-msi-subwindow;
+			};
+
+			sub-window@2 {		// Inter-partition region
+				compatible = "dma-subwindow";
+				guest-addr = <0 0x80000000>;
+				size = <0 0x1000000>; // 16MB
 			};
 		};
 
@@ -94,15 +104,8 @@
 
 			sub-window@1 {		// Inter-partition region
 				compatible = "dma-subwindow";
-				guest-addr = <0 0x40000000>;
-				size = <0 0x1000000>; // 16MB
-			};
-
-			sub-window@2 {		// MSI sub-window
-				compatible = "dma-subwindow";
 				guest-addr = <0 0x80000000>;
-				size = <0 0x1000000>; // 64MB
-				pcie-msi-subwindow;
+				size = <0 0x1000000>; // 16MB
 			};
 		};
 
@@ -256,7 +259,7 @@
 		gpma1 {
 			compatible = "guest-phys-mem-area";
 			phys-mem = <&pma15>;	// Interpartition between Linux1 - Linux2
-			guest-addr = <0 0x40000000>;
+			guest-addr = <0 0x80000000>;
 			node-update {
 				delete-prop = "device_type";
 			};
@@ -573,21 +576,21 @@
 			part1_bp10: buffer-pool@10 {
 				compatible = "fsl,p2041-bpool", "fsl,bpool";
 				fsl,bpid = <10>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 192 0 0x40000000>;
+				fsl,bpool-ethernet-cfg = <0 0x80 0 192 0 0x80000000>;
 				fsl,bpool-ethernet-seeds;
 			};
 
 			part1_bp11: buffer-pool@11 {
 				compatible = "fsl,p2041-bpool", "fsl,bpool";
 				fsl,bpid = <11>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 576 0 0x40006000>;
+				fsl,bpool-ethernet-cfg = <0 0x80 0 576 0 0x80006000>;
 				fsl,bpool-ethernet-seeds;
 			};
 
 			part1_bp12: buffer-pool@12 {
 				compatible = "fsl,p2041-bpool", "fsl,bpool";
 				fsl,bpid = <12>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 1600 0 0x40018000>;
+				fsl,bpool-ethernet-cfg = <0 0x80 0 1600 0 0x80018000>;
 				fsl,bpool-ethernet-seeds;
 			};
 
@@ -676,7 +679,7 @@
 		gpma1 {
 			compatible = "guest-phys-mem-area";
 			phys-mem = <&pma15>;	// Interpartition between Linux1 - Linux2
-			guest-addr = <0 0x40000000>;
+			guest-addr = <0 0x80000000>;
 			node-update {
 				delete-prop = "device_type";
 			};
@@ -747,19 +750,19 @@
 			part2_bp10: buffer-pool@10 {
 				compatible = "fsl,p2041-bpool", "fsl,bpool";
 				fsl,bpid = <10>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 192 0 0x40000000>;
+				fsl,bpool-ethernet-cfg = <0 0x80 0 192 0 0x80000000>;
 			};
 
 			part2_bp11: buffer-pool@11 {
 				compatible = "fsl,p2041-bpool", "fsl,bpool";
 				fsl,bpid = <11>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 576 0 0x40006000>;
+				fsl,bpool-ethernet-cfg = <0 0x80 0 576 0 0x80006000>;
 			};
 
 			part2_bp12: buffer-pool@12 {
 				compatible = "fsl,p2041-bpool", "fsl,bpool";
 				fsl,bpid = <12>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 1600 0 0x40018000>;
+				fsl,bpool-ethernet-cfg = <0 0x80 0 1600 0 0x80018000>;
 			};
 
 			fsl,dpaa {
