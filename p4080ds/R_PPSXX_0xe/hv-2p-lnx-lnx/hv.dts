@@ -365,6 +365,14 @@
 			device = "buffer-pool@9";
 		};
 
+		buffer-pool@16 {
+			device = "buffer-pool@16";
+		};
+
+		buffer-pool@17 {
+			device = "buffer-pool@17";
+		};
+
 		qman-portal@0 {
 			device = "/qman-portals@ff4200000/qman-portal@0";
 
@@ -649,6 +657,10 @@
 			device = "/fsl,dpaa/ethernet@9";
 		};
 
+		// MAC-less b/w kernel and USDPAA -- assigned to this partition
+		dpa-ethernet@16 {
+			device = "/fsl,dpaa/ethernet@16";
+		};
 		portal-devices {
 			fman0 {
 				device = "fman0";
@@ -734,7 +746,7 @@
 			};
 
 			chosen {
-				bootargs = "usdpaa_mem=64M";
+				bootargs = "usdpaa_mem=64M bportals=0 qportals=0";
 			};
 		};
 
@@ -975,7 +987,7 @@
 				};
 			};
 			chosen {
-				bootargs = "usdpaa_mem=64M";
+				bootargs = "usdpaa_mem=64M bportals=0 qportals=0";
 			};
 		};
 
