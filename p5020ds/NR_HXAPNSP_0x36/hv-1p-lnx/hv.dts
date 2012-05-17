@@ -203,6 +203,19 @@
 			device = "/bman-portals/bman-portal@4000";
 		};
 
+		// Bman buffer pools assigned to this partition
+		buffer-pool@7 {
+			device = "buffer-pool@7";
+		};
+
+		buffer-pool@8 {
+			device = "buffer-pool@8";
+		};
+
+		buffer-pool@9 {
+			device = "buffer-pool@9";
+		};
+
 		qman-portal@0 {
 			device = "/qman-portals@ff4200000/qman-portal@0";
 
