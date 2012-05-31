@@ -314,6 +314,14 @@
 			device = "buffer-pool@9";
 		};
 
+		buffer-pool@16 {
+			device = "buffer-pool@16";
+		};
+
+		buffer-pool@17 {
+			device = "buffer-pool@17";
+		};
+
 		qman-portal@0 {
 			device = "/qman-portals@ff4200000/qman-portal@0";
 
@@ -553,6 +561,11 @@
 		// FMAN0 eth5 -- ethernet 5 assigned to this partition
 		dpa-ethernet@5 {
 			device = "/fsl,dpaa/ethernet@5";
+		};
+
+		// MAC-less b/w kernel and USDPAA -- assigned to this partition
+		dpa-ethernet@6 {
+			device = "/fsl,dpaa/ethernet@6";
 		};
 
 		portal-devices {
