@@ -638,7 +638,7 @@
 			};
 
 			chosen {
-				bootargs = "usdpaa_mem=64M";
+				bootargs = "usdpaa_mem=64M bportals=0 qportals=0";
 			};
 		};
 
@@ -847,7 +847,7 @@
 			};
 
 			chosen {
-				bootargs = "usdpaa_mem=64M";
+				bootargs = "usdpaa_mem=64M bportals=0 qportals=0";
 			};
 		};
 
