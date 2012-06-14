@@ -589,42 +589,14 @@
 			part1_bp10: buffer-pool@10 {
 				compatible = "fsl,p2041-bpool", "fsl,bpool";
 				fsl,bpid = <10>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 192 0 0x80000000>;
+				fsl,bpool-ethernet-cfg = <0 0x80 0 1728 0 0x80000000>;
 				fsl,bpool-ethernet-seeds;
 			};
 
 			part1_bp11: buffer-pool@11 {
 				compatible = "fsl,p2041-bpool", "fsl,bpool";
 				fsl,bpid = <11>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 576 0 0x80006000>;
-				fsl,bpool-ethernet-seeds;
-			};
-
-			part1_bp12: buffer-pool@12 {
-				compatible = "fsl,p2041-bpool", "fsl,bpool";
-				fsl,bpid = <12>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 1600 0 0x80018000>;
-				fsl,bpool-ethernet-seeds;
-			};
-
-			part1_bp13: buffer-pool@13 {
-				compatible = "fsl,p2041-bpool", "fsl,bpool";
-				fsl,bpid = <13>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 192 0 0x8004A000>;
-				fsl,bpool-ethernet-seeds;
-			};
-
-			part1_bp14: buffer-pool@14 {
-				compatible = "fsl,p2041-bpool", "fsl,bpool";
-				fsl,bpid = <14>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 576 0 0x80050000>;
-				fsl,bpool-ethernet-seeds;
-			};
-
-			part1_bp15: buffer-pool@15 {
-				compatible = "fsl,p2041-bpool", "fsl,bpool";
-				fsl,bpid = <15>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 1600 0 0x80062000>;
+				fsl,bpool-ethernet-cfg = <0 0x80 0 1728 0 0x80036000>;
 				fsl,bpool-ethernet-seeds;
 			};
 
@@ -660,11 +632,11 @@
 		node-update-phandle {
 			fsl,dpaa {
 				dpa-ethernet@10 {
-					fsl,bman-buffer-pools = <&part1_bp10 &part1_bp11 &part1_bp12>;
+					fsl,bman-buffer-pools = <&part1_bp10>;
 				};
 
 				dpa-ethernet@1 {
-					fsl,bman-buffer-pools = <&part1_bp13 &part1_bp14 &part1_bp15>;
+					fsl,bman-buffer-pools = <&part1_bp11>;
 				};
 			};
 		};
@@ -815,40 +787,13 @@
 			part2_bp10: buffer-pool@10 {
 				compatible = "fsl,p2041-bpool", "fsl,bpool";
 				fsl,bpid = <10>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 192 0 0x80000000>;
+				fsl,bpool-ethernet-cfg = <0 0x80 0 1728 0 0x80000000>;
 			};
 
 			part2_bp11: buffer-pool@11 {
 				compatible = "fsl,p2041-bpool", "fsl,bpool";
 				fsl,bpid = <11>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 576 0 0x80006000>;
-			};
-
-			part2_bp12: buffer-pool@12 {
-				compatible = "fsl,p2041-bpool", "fsl,bpool";
-				fsl,bpid = <12>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 1600 0 0x80018000>;
-			};
-
-			part2_bp13: buffer-pool@13 {
-				compatible = "fsl,p2041-bpool", "fsl,bpool";
-				fsl,bpid = <13>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 192 0 0x8004A000>;
-				fsl,bpool-ethernet-seeds;
-			};
-
-			part2_bp14: buffer-pool@14 {
-				compatible = "fsl,p2041-bpool", "fsl,bpool";
-				fsl,bpid = <14>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 576 0 0x80050000>;
-				fsl,bpool-ethernet-seeds;
-			};
-
-			part2_bp15: buffer-pool@15 {
-				compatible = "fsl,p2041-bpool", "fsl,bpool";
-				fsl,bpid = <15>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 1600 0 0x80062000>;
-				fsl,bpool-ethernet-seeds;
+				fsl,bpool-ethernet-cfg = <0 0x80 0 1728 0 0x80036000>;
 			};
 
 			fsl,dpaa {
@@ -890,11 +835,11 @@
 		node-update-phandle {
 			fsl,dpaa {
 				dpa-ethernet@10 {
-					fsl,bman-buffer-pools = <&part2_bp10 &part2_bp11 &part2_bp12>;
+					fsl,bman-buffer-pools = <&part2_bp10>;
 				};
 
 				dpa-ethernet@20 {
-					fsl,bman-buffer-pools = <&part2_bp13 &part2_bp14 &part2_bp15>;
+					fsl,bman-buffer-pools = <&part2_bp11>;
 				};
 			};
 		};
