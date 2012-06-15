@@ -586,6 +586,17 @@
 		};
 
 		node-update {
+			// =====================================================
+			// The buffer size value of 1728 (multiple of ODD cache
+			// line) is calculated according to dpa_extra_headroom
+			// which defaults to 64bytes.
+			// If dpa_extra_headroom is set to 0 then the buffer
+			// size will be 1600bytes (also multiple of odd cache
+			// line). For any extra headroom values ranging between
+			// 1 and 128bytes the buffer size is 1728bytes. For
+			// values ranging between 129bytes and 256bytes, the
+			// buffer size is 1856bytes and so on.
+			// =====================================================
 			part1_bp10: buffer-pool@10 {
 				compatible = "fsl,p2041-bpool", "fsl,bpool";
 				fsl,bpid = <10>;
@@ -593,6 +604,9 @@
 				fsl,bpool-ethernet-seeds;
 			};
 
+			// =====================================================
+			// Same comment as for part1_bp10
+			// =====================================================
 			part1_bp11: buffer-pool@11 {
 				compatible = "fsl,p2041-bpool", "fsl,bpool";
 				fsl,bpid = <11>;
@@ -783,6 +797,8 @@
 			// guests, and, when mapped on either guest,
 			// each should point to the same physical memory,
 			// otherwise a segfault/machine check will occur.
+			//
+			// Same comment as for part1_bp10
 			// =====================================================
 			part2_bp10: buffer-pool@10 {
 				compatible = "fsl,p2041-bpool", "fsl,bpool";
@@ -790,6 +806,9 @@
 				fsl,bpool-ethernet-cfg = <0 0x80 0 1728 0 0x80000000>;
 			};
 
+			// =====================================================
+			// Same comment as for part1_bp10
+			// =====================================================
 			part2_bp11: buffer-pool@11 {
 				compatible = "fsl,p2041-bpool", "fsl,bpool";
 				fsl,bpid = <11>;
