@@ -600,6 +600,21 @@
 			dma-window = <&dw_linux1>;
 		};
 
+		usb1 {
+			device = "usb1";
+			dma-window = <&dw_linux1>;
+		};
+
+		sata@220000 {
+			device = "/soc/sata@220000";
+			dma-window = <&dw_linux1>;
+		};
+
+		sata@221000 {
+			device = "/soc/sata@221000";
+			dma-window = <&dw_linux1>;
+		};
+
 		crypto {
 			device = "/soc/crypto";
 			dma-window = <&dw_linux1>;
