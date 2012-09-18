@@ -454,8 +454,12 @@
 			device = "/bman-portals@ff4000000/bman-bpids@0";
 		};
 
-		qman-fqids {
+		qman-fqids@0 {
 			device = "/qman-portals@ff4200000/qman-fqids@0";
+		};
+
+		qman-fqids@1 {
+			device = "/qman-portals@ff4200000/qman-fqids@1";
 		};
 
 		qman-pools {
