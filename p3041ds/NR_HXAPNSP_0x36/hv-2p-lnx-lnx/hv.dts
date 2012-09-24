@@ -258,7 +258,7 @@
 		cpus = <0 3>;
 		guest-image = <0xf 0xe8020000 0 0 0 0x700000>;
 		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
-		dtb-window = <0 0x1000000 0 0x12000>;
+		dtb-window = <0 0x1000000 0 0x20000>;
 
 		// Temporary until Linux uses enable LIODN hcall
 		no-dma-disable;
@@ -767,7 +767,7 @@
 		cpus = <3 1>;
 		guest-image = <0xf 0xe8020000 0 0 0 0x700000>;
 		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
-		dtb-window = <0 0x1000000 0 0x12000>;
+		dtb-window = <0 0x1000000 0 0x20000>;
 
 		// Temporary until Linux uses enable LIODN hcall
 		no-dma-disable;
