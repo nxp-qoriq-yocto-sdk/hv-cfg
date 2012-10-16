@@ -642,19 +642,24 @@
 			dma-window = <&dw_linux1>;
 		};
 
-		// FMAN0 eth4 - XAUI 10G -- ethernet 4 assigned to this partition
+		// FMAN0 XAUI -- ethernet 5 assigned to this partition
+		dpa-ethernet@5 {
+			device = "/fsl,dpaa/ethernet@5";
+		};
+
+		// FMAN0 SGMII -- ethernet 2 assigned to this partition
+		dpa-ethernet@2 {
+			device = "/fsl,dpaa/ethernet@2";
+		};
+
+		// FMAN0 SGMII -- ethernet 3 assigned to this partition
+		dpa-ethernet@3 {
+			device = "/fsl,dpaa/ethernet@3";
+		};
+
+		// FMAN0 SGMII -- ethernet 4 assigned to this partition
 		dpa-ethernet@4 {
 			device = "/fsl,dpaa/ethernet@4";
-		};
-
-		// FMAN0 RGMII -- ethernet 1 assigned to this partition
-		dpa-ethernet@1 {
-			device = "/fsl,dpaa/ethernet@1";
-		};
-
-		// FMAN1 SGMII -- ethernet 7 assigned to this partition
-		dpa-ethernet@7 {
-			device = "/fsl,dpaa/ethernet@7";
 		};
 
 		// FMAN1 SGMII -- ethernet 8 assigned to this partition
@@ -662,9 +667,19 @@
 			device = "/fsl,dpaa/ethernet@8";
 		};
 
-		// FMAN1 XAUI -- ethernet 9 assigned to this partition
+		// FMAN1 SGMII -- ethernet 9 assigned to this partition
 		dpa-ethernet@9 {
 			device = "/fsl,dpaa/ethernet@9";
+		};
+
+		// FMAN1 SGMII -- ethernet 10 assigned to this partition
+		dpa-ethernet@10 {
+			device = "/fsl,dpaa/ethernet@10";
+		};
+
+		// FMAN1 XAUI -- ethernet 11 assigned to this partition
+		dpa-ethernet@11 {
+			device = "/fsl,dpaa/ethernet@11";
 		};
 
 		portal-devices {
@@ -688,49 +703,21 @@
 			part1_bp10: buffer-pool@10 {
 				compatible = "fsl,p5040-bpool", "fsl,bpool";
 				fsl,bpid = <10>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 192 0 0x80000000>;
+				fsl,bpool-ethernet-cfg = <0 0x80 0 1728 0 0x80000000>;
 				fsl,bpool-ethernet-seeds;
 			};
 
 			part1_bp11: buffer-pool@11 {
 				compatible = "fsl,p5040-bpool", "fsl,bpool";
 				fsl,bpid = <11>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 576 0 0x80006000>;
+				fsl,bpool-ethernet-cfg = <0 0x80 0 1728 0 0x80036000>;
 				fsl,bpool-ethernet-seeds;
 			};
 
-			part1_bp12: buffer-pool@12 {
-				compatible = "fsl,p5040-bpool", "fsl,bpool";
-				fsl,bpid = <12>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 1600 0 0x80018000>;
-				fsl,bpool-ethernet-seeds;
-			};
-
-			part1_bp13: buffer-pool@13 {
-				compatible = "fsl,p5040-bpool", "fsl,bpool";
-				fsl,bpid = <13>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 192 0 0x8004A000>;
-				fsl,bpool-ethernet-seeds;
-			};
-
-			part1_bp14: buffer-pool@14 {
-				compatible = "fsl,p5040-bpool", "fsl,bpool";
-				fsl,bpid = <14>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 576 0 0x80050000>;
-				fsl,bpool-ethernet-seeds;
-			};
-
-			part1_bp15: buffer-pool@15 {
-				compatible = "fsl,p5040-bpool", "fsl,bpool";
-				fsl,bpid = <15>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 1600 0 0x80062000>;
-				fsl,bpool-ethernet-seeds;
-			};
-
-			// Add a subnode dpa-ethernet@10 in fsl,dpaa node in GDT
+			// Add a subnode dpa-ethernet@12 in fsl,dpaa node in GDT
 			fsl,dpaa {
 				// Link with Linux2 (MAC-less)
-				dpa-ethernet@10 {
+				dpa-ethernet@12 {
 					compatible = "fsl,p5040-dpa-ethernet", "fsl,dpa-ethernet";
 					fsl,qman-frame-queues-rx = <0x4000 8>;
 					fsl,qman-frame-queues-tx = <0x4008 8>;
@@ -739,7 +726,7 @@
 
 				// Shared with Linux2 (Shared-MAC)
 				// The interface has to be set to promiscuous mode!
-				dpa-ethernet@1 {
+				dpa-ethernet@3 {
 					compatible = "fsl,p5040-dpa-ethernet", "fsl,dpa-ethernet";
 					fsl,qman-frame-queues-rx = <0x230 1 0x231 1 0x210 3>;
 					fsl,qman-frame-queues-tx = <0x234 1 0x238 1 0x200 8>;
@@ -751,15 +738,15 @@
 			};
 		};
 
-		// Add properties with phandle values to the node dpa-ethernet@10
+		// Add properties with phandle values to the node dpa-ethernet@12
 		node-update-phandle {
 			fsl,dpaa {
-				dpa-ethernet@10 {
-					fsl,bman-buffer-pools = <&part1_bp10 &part1_bp11 &part1_bp12>;
+				dpa-ethernet@12 {
+					fsl,bman-buffer-pools = <&part1_bp10>;
 				};
 
-				dpa-ethernet@1 {
-					fsl,bman-buffer-pools = <&part1_bp13 &part1_bp14 &part1_bp15>;
+				dpa-ethernet@3 {
+					fsl,bman-buffer-pools = <&part1_bp11>;
 				};
 			};
 		};
@@ -924,37 +911,13 @@
 			part2_bp10: buffer-pool@10 {
 				compatible = "fsl,p5040-bpool", "fsl,bpool";
 				fsl,bpid = <10>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 192 0 0x80000000>;
+				fsl,bpool-ethernet-cfg = <0 0x80 0 1728 0 0x80000000>;
 			};
 
 			part2_bp11: buffer-pool@11 {
 				compatible = "fsl,p5040-bpool", "fsl,bpool";
 				fsl,bpid = <11>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 576 0 0x80006000>;
-			};
-
-			part2_bp12: buffer-pool@12 {
-				compatible = "fsl,p5040-bpool", "fsl,bpool";
-				fsl,bpid = <12>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 1600 0 0x80018000>;
-			};
-
-			part2_bp13: buffer-pool@13 {
-				compatible = "fsl,p5040-bpool", "fsl,bpool";
-				fsl,bpid = <13>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 192 0 0x8004A000>;
-			};
-
-			part2_bp14: buffer-pool@14 {
-				compatible = "fsl,p5040-bpool", "fsl,bpool";
-				fsl,bpid = <14>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 576 0 0x80050000>;
-			};
-
-			part2_bp15: buffer-pool@15 {
-				compatible = "fsl,p5040-bpool", "fsl,bpool";
-				fsl,bpid = <15>;
-				fsl,bpool-ethernet-cfg = <0 0x80 0 1600 0 0x80062000>;
+				fsl,bpool-ethernet-cfg = <0 0x80 0 1728 0 0x80036000>;
 			};
 
 			fsl,dpaa {
@@ -963,10 +926,10 @@
 				// =====================================================
 				// Link with Linux1 (MAC-less)
 				// The TX/RX queues of this interface are same with the
-				// RX/TX queues of the interface dpa-ethernet@10 in
+				// RX/TX queues of the interface dpa-ethernet@12 in
 				// partition 1
 				// =====================================================
-				dpa-ethernet@10 {
+				dpa-ethernet@12 {
 					compatible = "fsl,p5040-dpa-ethernet", "fsl,dpa-ethernet";
 					fsl,qman-frame-queues-rx = <0x4008 8>;
 					fsl,qman-frame-queues-tx = <0x4000 8>;
@@ -976,7 +939,7 @@
 				// =====================================================
 				// Shared with Linux1 (Shared-MAC)
 				// The TX queues of this interface are the same with the
-				// TX queues of the interface dpa-ethernet@1 in
+				// TX queues of the interface dpa-ethernet@3 in
 				// partition 1; the RX queues are different
 				// =====================================================
 				dpa-ethernet@20 {
@@ -994,12 +957,12 @@
 
 		node-update-phandle {
 			fsl,dpaa {
-				dpa-ethernet@10 {
-					fsl,bman-buffer-pools = <&part2_bp10 &part2_bp11 &part2_bp12>;
+				dpa-ethernet@12 {
+					fsl,bman-buffer-pools = <&part2_bp10>;
 				};
 
 				dpa-ethernet@20 {
-					fsl,bman-buffer-pools = <&part2_bp13 &part2_bp14 &part2_bp15>;
+					fsl,bman-buffer-pools = <&part2_bp11>;
 				};
 			};
 		};
