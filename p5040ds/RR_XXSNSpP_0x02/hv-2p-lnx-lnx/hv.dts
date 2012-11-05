@@ -573,6 +573,10 @@
 			device = "/localbus";
 		};
 
+		spi {
+			device = "/soc/spi@110000";
+		};
+
 		gpio {
 			device = "/soc/gpio";
 		};
