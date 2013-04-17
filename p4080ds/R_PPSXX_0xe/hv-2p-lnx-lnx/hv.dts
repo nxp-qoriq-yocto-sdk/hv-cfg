@@ -609,6 +609,14 @@
 			dma-window = <&dw_linux1>;
 		};
 
+		mdio-mux-emi1 {
+			device = "mdio-mux-emi1";
+		};
+
+		mdio-mux-emi2 {
+			device = "mdio-mux-emi2";
+		};
+
 		pme {
 			device = "pme";
 			dma-window = <&dw_linux1>;
