@@ -720,6 +720,8 @@
 
 			// Add a subnode dpa-ethernet@12 in fsl,dpaa node in GDT
 			fsl,dpaa {
+				compatible = "fsl,p5040-dpaa", "fsl,dpaa";
+
 				// Link with Linux2 (MAC-less)
 				dpa-ethernet@12 {
 					compatible = "fsl,p5040-dpa-ethernet", "fsl,dpa-ethernet";
