@@ -730,7 +730,7 @@
 
 				// Link with Linux2 (MAC-less)
 				dpa-ethernet@10 {
-					compatible = "fsl,p4080-dpa-ethernet", "fsl,dpa-ethernet";
+					compatible = "fsl,p4080-dpa-ethernet-macless", "fsl,dpa-ethernet-macless";
 					fsl,qman-frame-queues-rx = <0x4000 8>;
 					fsl,qman-frame-queues-tx = <0x4008 8>;
 					local-mac-address = [02 00 c0 a8 6f fe];
@@ -738,8 +738,8 @@
 
 				// Shared with Linux2 (Shared-MAC)
 				// The interface has to be set to promiscuous mode!
-				dpa-ethernet@1 {
-					compatible = "fsl,p4080-dpa-ethernet", "fsl,dpa-ethernet";
+				dpa-ethernet@9 {
+					compatible = "fsl,p4080-dpa-ethernet-shared", "fsl,dpa-ethernet-shared";
 					fsl,qman-frame-queues-rx = <0x230 1 0x231 1 0x210 3>;
 					fsl,qman-frame-queues-tx = <0x234 1 0x238 1 0x200 8>;
 				};
@@ -757,7 +757,7 @@
 					fsl,bman-buffer-pools = <&part1_bp10>;
 				};
 
-				dpa-ethernet@1 {
+				dpa-ethernet@9 {
 					fsl,bman-buffer-pools = <&part1_bp11>;
 				};
 			};
@@ -822,6 +822,7 @@
 
 		// Temporary until Linux uses enable LIODN hcall
 		no-dma-disable;
+		no-auto-start;
 
 		gpma0 {
 			compatible = "guest-phys-mem-area";
@@ -955,7 +956,7 @@
 				// partition 1
 				// =====================================================
 				dpa-ethernet@10 {
-					compatible = "fsl,p4080-dpa-ethernet", "fsl,dpa-ethernet";
+					compatible = "fsl,p4080-dpa-ethernet-macless", "fsl,dpa-ethernet-macless";
 					fsl,qman-frame-queues-rx = <0x4008 8>;
 					fsl,qman-frame-queues-tx = <0x4000 8>;
 					local-mac-address = [02 00 c0 a8 79 fe];
@@ -968,7 +969,7 @@
 				// partition 1; the RX queues are different
 				// =====================================================
 				dpa-ethernet@20 {
-					compatible = "fsl,p4080-dpa-ethernet", "fsl,dpa-ethernet";
+					compatible = "fsl,p4080-dpa-ethernet-macless", "fsl,dpa-ethernet-macless";
 					fsl,qman-frame-queues-rx = <0x220 3>;
 					fsl,qman-frame-queues-tx = <0x200 8>;
 					delete-prop = "fsl,fman-mac";

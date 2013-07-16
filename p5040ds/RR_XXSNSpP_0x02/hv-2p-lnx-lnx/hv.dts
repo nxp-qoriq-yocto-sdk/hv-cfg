@@ -724,7 +724,7 @@
 
 				// Link with Linux2 (MAC-less)
 				dpa-ethernet@12 {
-					compatible = "fsl,p5040-dpa-ethernet", "fsl,dpa-ethernet";
+					compatible = "fsl,p5040-dpa-ethernet", "fsl,dpa-ethernet-macless";
 					fsl,qman-frame-queues-rx = <0x4000 8>;
 					fsl,qman-frame-queues-tx = <0x4008 8>;
 					local-mac-address = [02 00 c0 a8 6f fe];
@@ -733,7 +733,7 @@
 				// Shared with Linux2 (Shared-MAC)
 				// The interface has to be set to promiscuous mode!
 				dpa-ethernet@3 {
-					compatible = "fsl,p5040-dpa-ethernet", "fsl,dpa-ethernet";
+					compatible = "fsl,p5040-dpa-ethernet", "fsl,dpa-ethernet-shared";
 					fsl,qman-frame-queues-rx = <0x230 1 0x231 1 0x210 3>;
 					fsl,qman-frame-queues-tx = <0x234 1 0x238 1 0x200 8>;
 				};
@@ -936,7 +936,7 @@
 				// partition 1
 				// =====================================================
 				dpa-ethernet@12 {
-					compatible = "fsl,p5040-dpa-ethernet", "fsl,dpa-ethernet";
+					compatible = "fsl,p5040-dpa-ethernet", "fsl,dpa-ethernet-macless";
 					fsl,qman-frame-queues-rx = <0x4008 8>;
 					fsl,qman-frame-queues-tx = <0x4000 8>;
 					local-mac-address = [02 00 c0 a8 79 fe];
@@ -949,7 +949,7 @@
 				// partition 1; the RX queues are different
 				// =====================================================
 				dpa-ethernet@20 {
-					compatible = "fsl,p5040-dpa-ethernet", "fsl,dpa-ethernet";
+					compatible = "fsl,p5040-dpa-ethernet", "fsl,dpa-ethernet-macless";
 					fsl,qman-frame-queues-rx = <0x220 3>;
 					fsl,qman-frame-queues-tx = <0x200 8>;
 					delete-prop = "fsl,fman-mac";
