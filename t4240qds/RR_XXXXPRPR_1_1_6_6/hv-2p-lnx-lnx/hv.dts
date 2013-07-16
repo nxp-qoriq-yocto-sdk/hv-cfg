@@ -1554,7 +1554,6 @@
 		no-dma-disable;
 		direct-guest-tlb-management;
 		direct-guest-tlb-miss;
-		no-auto-start;
 
 		gpma0 {
 			compatible = "guest-phys-mem-area";
