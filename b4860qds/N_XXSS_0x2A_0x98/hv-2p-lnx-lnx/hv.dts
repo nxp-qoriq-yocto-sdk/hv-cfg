@@ -389,7 +389,6 @@
 
 		// Temporary until Linux uses enable LIODN hcall
 		no-dma-disable;
-		direct-guest-tlb-management;
 		direct-guest-tlb-miss;
 
 		gpma0 {
@@ -1051,7 +1050,6 @@
 
 		// Temporary until Linux uses enable LIODN hcall
 		no-dma-disable;
-		direct-guest-tlb-management;
 		direct-guest-tlb-miss;
 		no-auto-start;
 
