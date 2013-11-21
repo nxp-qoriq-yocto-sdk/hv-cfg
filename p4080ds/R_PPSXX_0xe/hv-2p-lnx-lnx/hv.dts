@@ -738,7 +738,7 @@
 
 				// Shared with Linux2 (Shared-MAC)
 				// The interface has to be set to promiscuous mode!
-				dpa-ethernet@9 {
+				dpa-ethernet@1 {
 					compatible = "fsl,p4080-dpa-ethernet-shared", "fsl,dpa-ethernet-shared";
 					fsl,qman-frame-queues-rx = <0x230 1 0x231 1 0x210 3>;
 					fsl,qman-frame-queues-tx = <0x234 1 0x238 1 0x200 8>;
@@ -757,7 +757,7 @@
 					fsl,bman-buffer-pools = <&part1_bp10>;
 				};
 
-				dpa-ethernet@9 {
+				dpa-ethernet@1 {
 					fsl,bman-buffer-pools = <&part1_bp11>;
 				};
 			};
