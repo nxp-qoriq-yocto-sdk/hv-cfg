@@ -822,7 +822,6 @@
 
 		// Temporary until Linux uses enable LIODN hcall
 		no-dma-disable;
-		no-auto-start;
 
 		gpma0 {
 			compatible = "guest-phys-mem-area";
