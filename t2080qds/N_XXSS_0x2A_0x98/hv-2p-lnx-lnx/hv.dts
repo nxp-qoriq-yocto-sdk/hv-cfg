@@ -234,55 +234,6 @@
 			guest-addr = <0xf 0xf6044000>;
 			size = <0 0x4000>;
 		};
-
-		// DMA window for stash_dqrr for qman-portal18
-		dw_dqrr_qportal18: window21 {
-			compatible = "dma-window";
-			guest-addr = <0xf 0xf6048000>;
-			size = <0 0x4000>;
-		};
-
-		// DMA window for stash_dqrr for qman-portal19
-		dw_dqrr_qportal19: window22 {
-			compatible = "dma-window";
-			guest-addr = <0xf 0xf604c000>;
-			size = <0 0x4000>;
-		};
-
-		// DMA window for stash_dqrr for qman-portal20
-		dw_dqrr_qportal20: window23 {
-			compatible = "dma-window";
-			guest-addr = <0xf 0xf6050000>;
-			size = <0 0x4000>;
-		};
-
-		// DMA window for stash_dqrr for qman-portal21
-		dw_dqrr_qportal21: window24 {
-			compatible = "dma-window";
-			guest-addr = <0xf 0xf6054000>;
-			size = <0 0x4000>;
-		};
-
-		// DMA window for stash_dqrr for qman-portal22
-		dw_dqrr_qportal22: window25 {
-			compatible = "dma-window";
-			guest-addr = <0xf 0xf6058000>;
-			size = <0 0x4000>;
-		};
-
-		// DMA window for stash_dqrr for qman-portal23
-		dw_dqrr_qportal23: window26 {
-			compatible = "dma-window";
-			guest-addr = <0xf 0xf605c000>;
-			size = <0 0x4000>;
-		};
-
-		// DMA window for stash_dqrr for qman-portal24
-                dw_dqrr_qportal24: window27 {
-                        compatible = "dma-window";
-                        guest-addr = <0xf 0xf6060000>;
-                        size = <0 0x4000>;
-                };
 	};
 
 	// =====================================================
@@ -911,24 +862,24 @@
 			dma-window = <&dw_linux1>;
 		};
 
-		// FMAN0 SGMII - ethernet 4 assigned to this partition
-		dpa-ethernet@4 {
-			device = "/fsl,dpaa/ethernet@4";
+		// FMAN0 XAUI - ethernet 0 assigned to this partition
+		dpa-ethernet@0 {
+			device = "/fsl,dpaa/ethernet@0";
 		};
 
-		// FMAN0 SGMII - ethernet 4 assigned to this partition
-		dpa-ethernet@5 {
-			device = "/fsl,dpaa/ethernet@5";
+		// FMAN0 XAUI - ethernet 1 assigned to this partition
+		dpa-ethernet@1 {
+			device = "/fsl,dpaa/ethernet@1";
 		};
 
-		// FMAN0 XAUI -- ethernet 8 assigned to this partition
-		dpa-ethernet@8 {
-			device = "/fsl,dpaa/ethernet@8";
+		// FMAN0 RGMII -- ethernet 2 assigned to this partition
+		dpa-ethernet@2 {
+			device = "/fsl,dpaa/ethernet@2";
 		};
 
-		// FMAN0 XAUI -- ethernet 9 assigned to this partition
-		dpa-ethernet@9 {
-			device = "/fsl,dpaa/ethernet@9";
+		// FMAN0 RGMII -- ethernet 3 assigned to this partition
+		dpa-ethernet@3 {
+			device = "/fsl,dpaa/ethernet@3";
 		};
 
 		// MAC-less b/w kernel and USDPAA -- assigned to this partition
@@ -1000,7 +951,7 @@
 
 				// Shared with Linux2 (Shared-MAC)
 				// The interface has to be set to promiscuous mode!
-				dpa-ethernet@4 {
+				dpa-ethernet@0 {
 					compatible = "fsl,t2080-dpa-ethernet", "fsl,dpa-ethernet-shared";
 					fsl,qman-frame-queues-rx = <0x340 1 0x341 1 0x320 8>;
 					fsl,qman-frame-queues-tx = <0x342 1 0x343 1 0x300 8>;
@@ -1018,7 +969,7 @@
 					fsl,bman-buffer-pools = <&part1_bp10>;
 				};
 
-				dpa-ethernet@4 {
+				dpa-ethernet@0 {
 					fsl,bman-buffer-pools = <&part1_bp11>;
 				};
 			};
@@ -1250,7 +1201,7 @@
 				// =====================================================
 				// Shared with Linux1 (Shared-MAC)
 				// The TX queues of this interface are the same with the
-				// TX queues of the interface dpa-ethernet@4 in
+				// TX queues of the interface dpa-ethernet@0 in
 				// partition 1; the RX queues are different
 				// =====================================================
 				dpa-ethernet@20 {
