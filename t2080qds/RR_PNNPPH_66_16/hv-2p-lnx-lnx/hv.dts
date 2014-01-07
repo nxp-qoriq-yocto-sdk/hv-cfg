@@ -897,6 +897,16 @@
 			device = "/fsl,dpaa/ethernet@3";
 		};
 
+		// FMAN0 XAUI - ethernet 8 assigned to this partition
+		dpa-ethernet@8 {
+			device = "/fsl,dpaa/ethernet@8";
+		};
+
+		// FMAN0 XAUI - ethernet 9 assigned to this partition
+		dpa-ethernet@9 {
+			device = "/fsl,dpaa/ethernet@9";
+		};
+
 		// MAC-less b/w kernel and USDPAA -- assigned to this partition
 		dpa-ethernet@16 {
 			device = "/fsl,dpaa/ethernet@16";
