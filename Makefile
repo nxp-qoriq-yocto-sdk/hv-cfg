@@ -4,7 +4,7 @@ BOARDS = p2041rdb p3041ds p4080ds p5020ds p5040ds t1040qds t1040rdb \
 VER = $(shell git describe --tags)
 
 all install clean:
-	@for board in $(BOARDS); do \
+	@for board in $(BOARDS) experimental; do \
 		$(MAKE) -C $$board $@ DESTDIR=$(DESTDIR)/$$board; \
 	done
 

@@ -1,0 +1,674 @@
+/* Hypervisor Configuration tree containing all hypervisor configuration
+ * parameters and partition definition information.
+ * (Note -- Please refer to Hypervisor SW Reference Manual
+ * (Chapter 5 Configuration) for further details)
+ *
+ * Copyright 2014 Freescale Semiconductor, Inc.
+ */
+
+/dts-v1/;
+
+/ {	// root node
+
+	// The root node of the configuration device tree must contain a
+	// compatible property that identifies the device tree as a hypervisor
+
+	compatible = "fsl,hv-config";
+
+	// =====================================================
+	// Physical Memory Areas
+	// =====================================================
+	lnx1_pma: lnx1_pma {
+		compatible = "phys-mem-area";
+		addr = <0x0 0x00000000>;	// Linux
+		size = <0x0 0x40000000>;	// 1GB
+	};
+
+	images_pma: images_pma {
+		compatible = "phys-mem-area";
+		addr = <0x0 0x78000000>;	// Used for boot-from-RAM
+		size = <0x0 0x04000000>;	// 64MB
+	};
+
+	hv_pma: hv_pma {
+		compatible = "phys-mem-area";
+		addr = <0x0 0x7f000000>;	// Hypervisor
+		size = <0x0 0x01000000>;	// 16MB
+	};
+
+	// =====================================================
+	// DMA Windows
+	// =====================================================
+	dma-windows {
+		// DMA window for part1_linux
+		dw_linux1: dw_linux1 {
+			compatible = "dma-window";
+			guest-addr = <0 0>;
+			size = <0x0 0x80000000>; // 2GB
+			subwindow-count = <2>;
+
+			sub-window@0 {
+				compatible = "dma-subwindow";
+				guest-addr = <0 0>;
+				size = <0 0x40000000>; // 1GB
+			};
+
+			// ====================================================
+			// The window is used for MSIIR translation. The
+			// hypervisor sets  a property in the guest device tree
+			// (msi-address-64) which indicates the guest physical
+			// address of the MSIIR register.
+			// This address must be in the next page after the end
+			// of DDR as seen by the guest. This is because, Linux
+			// is extending the DDR ATMU with one page in order to
+			// cover the MSIIR register.
+			// ====================================================
+			sub-window@1 {		// MSI sub-window
+				compatible = "dma-subwindow";
+				guest-addr = <0 0x40000000>;
+				size = <0 0x1000>; // 4KB
+				pcie-msi-subwindow;
+			};
+
+		};
+
+		// DMA window for stash_dqrr for qman-portal0
+		dw_dqrr_qportal0: window3 {
+			compatible = "dma-window";
+			guest-addr = <0xf 0xf4200000>;
+			size = <0 0x4000>;
+		};
+
+		// DMA window for stash_dqrr for qman-portal1
+		dw_dqrr_qportal1: window4 {
+			compatible = "dma-window";
+			guest-addr = <0xf 0xf4204000>;
+			size = <0 0x4000>;
+		};
+
+		// DMA window for stash_dqrr for qman-portal2
+		dw_dqrr_qportal2: window5 {
+			compatible = "dma-window";
+			guest-addr = <0xf 0xf4208000>;
+			size = <0 0x4000>;
+		};
+
+		// DMA window for stash_dqrr for qman-portal3
+		dw_dqrr_qportal3: window6 {
+			compatible = "dma-window";
+			guest-addr = <0xf 0xf420c000>;
+			size = <0 0x4000>;
+		};
+
+		// DMA window for stash_dqrr for qman-portal4
+		dw_dqrr_qportal4: window7 {
+			compatible = "dma-window";
+			guest-addr = <0xf 0xf4210000>;
+			size = <0 0x4000>;
+		};
+
+		// DMA window for stash_dqrr for qman-portal5
+		dw_dqrr_qportal5: window8 {
+			compatible = "dma-window";
+			guest-addr = <0xf 0xf4214000>;
+			size = <0 0x4000>;
+		};
+
+		// DMA window for stash_dqrr for qman-portal6
+		dw_dqrr_qportal6: window9 {
+			compatible = "dma-window";
+			guest-addr = <0xf 0xf4218000>;
+			size = <0 0x4000>;
+		};
+
+		// DMA window for stash_dqrr for qman-portal7
+		dw_dqrr_qportal7: window10 {
+			compatible = "dma-window";
+			guest-addr = <0xf 0xf421c000>;
+			size = <0 0x4000>;
+		};
+
+		// DMA window for stash_dqrr for qman-portal8
+		dw_dqrr_qportal8: window11 {
+			compatible = "dma-window";
+			guest-addr = <0xf 0xf4220000>;
+			size = <0 0x4000>;
+		};
+
+		// DMA window for stash_dqrr for qman-portal9
+		dw_dqrr_qportal9: window12 {
+			compatible = "dma-window";
+			guest-addr = <0xf 0xf4224000>;
+			size = <0 0x4000>;
+		};
+	};
+
+	// =====================================================
+	// Hypervisor Config
+	// Hypervisor is also configured via the Hypervisor
+	// configuration tree. A special node and subtree defines
+	// set of global configuration parameters and a number of
+	// device nodes assigning I/O devices to the hypervisor
+	// =====================================================
+	hv: hypervisor-config {
+		compatible = "hv-config";
+
+		// phandle to byte-channel used for hypervisor's console
+		stdout = <&hvbc>;
+
+		hv-memory {
+			compatible = "hv-memory";
+			phys-mem = <&hv_pma>;
+		};
+
+		hvbc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <0>;
+		};
+
+		// Device nodes given below are the physical I/O
+		// devices assigned to hypervisor
+		corenet-law {
+			device = "/soc/corenet-law";
+		};
+
+		cpc {
+			device = "/soc/l3-cache-controller";
+		};
+
+		corenet-cf {
+			device = "/soc/corenet-cf";
+		};
+
+		guts {
+			device = "/soc/global-utilities@e0000";
+		};
+
+		rcpm {
+			device = "/soc/global-utilities@e2000";
+		};
+
+		iommu {
+			device = "/soc/iommu";
+		};
+
+		mpic {
+			device = "/soc/pic@40000";
+		};
+
+		serial0: serial0 {
+			device = "serial0";
+		};
+
+		serial1: serial1 {
+			device = "serial1";
+		};
+
+		serial2: serial2 {
+			device = "serial2";
+		};
+
+		serial3: serial3 {
+			device = "serial3";
+		};
+	};
+
+	// =====================================================
+	// UART mux
+	// This node is referenced by byte-channels that use mux
+	// as an endpoint
+	// =====================================================
+	uartmux: uartmux {
+		compatible = "byte-channel-mux";
+		endpoint = <&serial0>;
+	};
+
+	// =====================================================
+	// Partition 1
+	// =====================================================
+	part1 {
+		// Indicates that it is a partition node
+		compatible = "partition";
+		label = "p1-linux";
+		// CPUs #0 to #7 are assigned to this partition
+		cpus = <0 8>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x700000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x20000>;
+
+		// Temporary until Linux uses enable LIODN hcall
+		no-dma-disable;
+
+		gpma0 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&lnx1_pma>;
+			guest-addr = <0 0>;
+		};
+
+		aliases {
+			stdout = <&part1_bc0>;
+		};
+
+		// =====================================================
+		// Devices assigned to the partition - device nodes
+		// device node is child of partition node and is used to
+		// assign physical I/O devices to partition
+		// =====================================================
+		part1_bc0: byte-channel@1 {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <1>;
+		};
+
+		// Bman portals assigned to this partition
+		bman-portal@0 {
+			device = "/bman-portals/bman-portal@0";
+		};
+
+		bman-portal@4000 {
+			device = "/bman-portals/bman-portal@4000";
+		};
+
+		bman-portal@8000 {
+			device = "/bman-portals/bman-portal@8000";
+		};
+
+		bman-portal@c000 {
+			device = "/bman-portals/bman-portal@c000";
+		};
+
+		bman-portal@10000 {
+			device = "/bman-portals/bman-portal@10000";
+		};
+
+		bman-portal@14000 {
+			device = "/bman-portals/bman-portal@14000";
+		};
+
+		bman-portal@18000 {
+			device = "/bman-portals/bman-portal@18000";
+		};
+
+		bman-portal@20000 {
+			device = "/bman-portals/bman-portal@20000";
+		};
+
+		bman-portal@24000 {
+			device = "/bman-portals/bman-portal@24000";
+		};
+
+		// Bman buffer pools assigned to this partition
+		buffer-pool@7 {
+			device = "buffer-pool@7";
+		};
+
+		buffer-pool@8 {
+			device = "buffer-pool@8";
+		};
+
+		buffer-pool@9 {
+			device = "buffer-pool@9";
+		};
+
+		buffer-pool@16 {
+			device = "buffer-pool@16";
+		};
+
+		buffer-pool@17 {
+			device = "buffer-pool@17";
+		};
+
+		qman-portal@0 {
+			device = "/qman-portals@ff4200000/qman-portal@0";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal0>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@4000 {
+			device = "/qman-portals@ff4200000/qman-portal@4000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@8000 {
+			device = "/qman-portals@ff4200000/qman-portal@8000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal2>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@c000 {
+			device = "/qman-portals@ff4200000/qman-portal@c000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal3>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@10000 {
+			device = "/qman-portals@ff4200000/qman-portal@10000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal4>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@14000 {
+			device = "/qman-portals@ff4200000/qman-portal@14000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal5>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@18000 {
+			device = "/qman-portals@ff4200000/qman-portal@18000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal6>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@20000 {
+			device = "/qman-portals@ff4200000/qman-portal@20000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal8>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@24000 {
+			device = "/qman-portals@ff4200000/qman-portal@24000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal9>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		memory-controller@8000 {
+			device = "/soc/memory-controller@8000";
+		};
+
+		memory-controller@9000 {
+			device = "/soc/memory-controller@9000";
+		};
+
+		msi0: msi@41600 {
+			device = "msi0";
+		};
+
+		msi2: msi@41a00 {
+			device = "msi2";
+		};
+
+		dma0 {
+			device = "dma0";
+			dma-window = <&dw_linux1>;
+		};
+
+		sdhc {
+			device = "sdhc";
+			dma-window = <&dw_linux1>;
+		};
+
+		i2c@118000 {
+			device = "/soc/i2c@118000";
+		};
+
+		i2c@118100 {
+			device = "/soc/i2c@118100";
+		};
+
+		flash {
+			device = "/localbus";
+		};
+
+		spi {
+			device = "/soc/spi@110000";
+		};
+
+		gpio {
+			device = "/soc/gpio";
+		};
+
+		pci0 {
+			device = "pci0";
+			map-ranges;
+			dma-window = <&dw_linux1>;
+			node-update-phandle {
+				fsl,msi = <&msi0>;
+			};
+		};
+
+		pci2 {
+			device = "pci2";
+			map-ranges;
+			dma-window = <&dw_linux1>;
+			node-update-phandle {
+				fsl,msi = <&msi2>;
+			};
+		};
+
+		usb0 {
+			device = "usb0";
+			dma-window = <&dw_linux1>;
+		};
+
+		crypto {
+			device = "/soc/crypto";
+			dma-window = <&dw_linux1>;
+		};
+
+		mdio-mux-emi1 {
+			device = "mdio-mux-emi1";
+		};
+
+		mdio-mux-emi2 {
+			device = "mdio-mux-emi2";
+		};
+
+		pme {
+			device = "pme";
+			dma-window = <&dw_linux1>;
+		};
+
+		qman {
+			device = "qman";
+			dma-window = <&dw_linux1>;
+			operation-mapping = <2>;	// OMI_QMAN_PRIV
+			stash-dest = <3>;		// L3/CPC
+		};
+
+		bman {
+			device = "bman";
+			dma-window = <&dw_linux1>;
+		};
+
+		fman0 {
+			device = "fman0";
+			dma-window = <&dw_linux1>;
+		};
+
+		fman1 {
+			device = "fman1";
+			dma-window = <&dw_linux1>;
+		};
+
+		// FMAN0 eth4 - XAUI 10G -- ethernet 4 assigned to this partition
+		dpa-ethernet@4 {
+			device = "/fsl,dpaa/ethernet@4";
+		};
+
+		// FMAN0 RGMII -- ethernet 1 assigned to this partition
+		dpa-ethernet@1 {
+			device = "/fsl,dpaa/ethernet@1";
+		};
+
+		// FMAN1 SGMII -- ethernet 7 assigned to this partition
+		dpa-ethernet@7 {
+			device = "/fsl,dpaa/ethernet@7";
+		};
+
+		// FMAN1 SGMII -- ethernet 8 assigned to this partition
+		dpa-ethernet@8 {
+			device = "/fsl,dpaa/ethernet@8";
+		};
+
+		// FMAN1 XAUI -- ethernet 9 assigned to this partition
+		dpa-ethernet@9 {
+			device = "/fsl,dpaa/ethernet@9";
+		};
+
+		// MAC-less b/w kernel and USDPAA -- assigned to this partition
+		dpa-ethernet@16 {
+			device = "/fsl,dpaa/ethernet@16";
+		};
+		portal-devices {
+			fman0 {
+				device = "fman0";
+				dma-window = <&dw_linux1>;
+			};
+
+			fman1 {
+				device = "fman1";
+				dma-window = <&dw_linux1>;
+			};
+
+			caam {
+				device = "crypto";
+				dma-window = <&dw_linux1>;
+			};
+
+			pme {
+				device = "pme";
+				dma-window = <&dw_linux1>;
+			};
+		};
+
+		node-update {
+			chosen {
+				bootargs = "usdpaa_mem=64M bportals=0 qportals=0";
+			};
+		};
+
+		dpa-fman0-oh@1 {
+			device = "/fsl,dpaa/dpa-fman0-oh@1";
+		};
+
+		bman-bpids {
+			device = "/bman-portals@ff4000000/bman-bpids@0";
+		};
+
+		qman-fqids@0 {
+			device = "/qman-portals@ff4200000/qman-fqids@0";
+		};
+
+		qman-fqids@1 {
+			device = "/qman-portals@ff4200000/qman-fqids@1";
+		};
+
+		qman-pools {
+			device = "/qman-portals@ff4200000/qman-pools@0";
+		};
+
+		qman-cgrids {
+			device = "/qman-portals@ff4200000/qman-cgrids@0";
+		};
+	};
+};

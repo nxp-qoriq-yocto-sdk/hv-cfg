@@ -1,0 +1,21 @@
+b4860qds-hv-1p.dts
+ - single partition scenario for b4860qds boards
+ - part1 resources: 8 cpus (hw threads), 1GiB memory, all devices
+
+p4080ds-hv-1p.dts
+ - single partition scenario for p4080ds boards
+ - part1 resources: 8 cpus, 1GiB memory, all devices
+
+p5040ds-hv-1p.dts
+ - single partition scenario for p5040ds boards
+ - part1 resources: 4 cpus, 1GiB memory, all devices
+
+t4240qds-hv-1p.dts
+ - single partition scenario for t4240qds boards
+ - part1 resources: 24 cpus (hw threads), 1GiB memory, all devices
+
+t4240qds-hv-23p.dts
+ - 23 partition scenario for t4240qds boards
+ - all partitions have the same resources allocated: 1 cpu (hw thread),
+   256MiB memory, no devices are allocated to any partition
+

@@ -1,0 +1,945 @@
+/* Hypervisor Configuration tree containing all hypervisor configuration
+ * parameters and partition definition information.
+ * (Note -- Please refer to Hypervisor SW Reference Manual
+ * (Chapter 5 Configuration) for further details)
+ *
+ * Copyright 2014 Freescale Semiconductor, Inc.
+ */
+
+/dts-v1/;
+
+/ {
+	compatible = "fsl,hv-config";
+	pma0:pma0 {
+		compatible = "phys-mem-area";
+		addr = <0x0 0x00000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma1:pma1 {
+		compatible = "phys-mem-area";
+		addr = <0x0 0x10000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma2:pma2 {
+		compatible = "phys-mem-area";
+		addr = <0x0 0x20000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma3:pma3 {
+		compatible = "phys-mem-area";
+		addr = <0x0 0x30000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma4:pma4 {
+		compatible = "phys-mem-area";
+		addr = <0x0 0x40000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma5:pma5 {
+		compatible = "phys-mem-area";
+		addr = <0x0 0x50000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma6:pma6 {
+		compatible = "phys-mem-area";
+		addr = <0x0 0x60000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma7:pma7 {
+		compatible = "phys-mem-area";
+		addr = <0x0 0x70000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma8:pma8 {
+		compatible = "phys-mem-area";
+		addr = <0x0 0x80000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma9:pma9 {
+		compatible = "phys-mem-area";
+		addr = <0x0 0x90000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma10:pma10 {
+		compatible = "phys-mem-area";
+		addr = <0x0 0xa0000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma11:pma11 {
+		compatible = "phys-mem-area";
+		addr = <0x0 0xb0000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma12:pma12 {
+		compatible = "phys-mem-area";
+		addr = <0x0 0xc0000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma13:pma13 {
+		compatible = "phys-mem-area";
+		addr = <0x0 0xd0000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma14:pma14 {
+		compatible = "phys-mem-area";
+		addr = <0x0 0xe0000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma15:pma15 {
+		compatible = "phys-mem-area";
+		addr = <0x0 0xf0000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma16:pma16 {
+		compatible = "phys-mem-area";
+		addr = <0x1 0x00000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma17:pma17 {
+		compatible = "phys-mem-area";
+		addr = <0x1 0x10000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma18:pma18 {
+		compatible = "phys-mem-area";
+		addr = <0x1 0x20000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma19:pma19 {
+		compatible = "phys-mem-area";
+		addr = <0x1 0x30000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma20:pma20 {
+		compatible = "phys-mem-area";
+		addr = <0x1 0x40000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma21:pma21 {
+		compatible = "phys-mem-area";
+		addr = <0x1 0x50000000>;
+		size = <0x0 0x10000000>;
+	};
+	pma22:pma22 {
+		compatible = "phys-mem-area";
+		addr = <0x1 0x60000000>;
+		size = <0x0 0x10000000>;
+	};
+
+	pma_hv:pma_hv {
+		compatible = "phys-mem-area";
+		addr = <0x1 0x70000000>;
+		size = <0x0 0x01000000>;
+	};
+
+	dma-windows {
+		window0: window0 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window1: window1 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window2: window2 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window3: window3 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window4: window4 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window5: window5 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window6: window6 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window7: window7 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window8: window8 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window9: window9 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window10: window10 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window11: window11 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window12: window12 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window13: window13 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window14: window14 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window15: window15 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window16: window16 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window17: window17 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window18: window18 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window19: window19 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window20: window20 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window21: window21 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+		window22: window22 {
+			compatible = "dma-window";
+			guest-addr = <0x0 0x0>;
+			size = <0x0 0x10000000>;
+		};
+	};
+
+	hv:hypervisor-config {
+		compatible = "hv-config";
+		stdout = <&hvbc>;
+
+		hvbc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <0>;
+		};
+
+		hv-memory {
+			compatible = "hv-memory";
+			phys-mem = <&pma_hv>;
+		};
+
+		uart0:serial0 {
+			device = "serial0";
+		};
+
+		serial1:serial1 {
+			device = "serial1";
+		};
+
+		mpic {
+			device = "/soc/pic";
+		};
+
+		cpc {
+			device = "/soc/l3-cache-controller";
+		};
+
+		corenet-law {
+			device = "/soc/corenet-law";
+		};
+
+		corenet-cf {
+			device = "/soc/corenet-cf";
+		};
+
+		guts {
+			device = "/soc/global-utilities@e0000";
+		};
+	};
+
+	uartmux: uartmux {
+		compatible = "byte-channel-mux";
+		endpoint = <&uart0>;
+	};
+
+	part0 {
+		compatible = "partition";
+		label = "p0-linux";
+		cpus = <0 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma0 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma0>;
+			guest-addr = <0 0>;
+		};
+
+		p0bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <1>;
+		};
+
+		aliases {
+			stdout = <&p0bc>;
+		};
+	};
+
+	part1 {
+		compatible = "partition";
+		label = "p1-linux";
+		cpus = <1 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma1 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma1>;
+			guest-addr = <0 0>;
+		};
+
+		p1bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <2>;
+		};
+
+		aliases {
+			stdout = <&p1bc>;
+		};
+	};
+
+	part2 {
+		compatible = "partition";
+		label = "p2-linux";
+		cpus = <2 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma2 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma2>;
+			guest-addr = <0 0>;
+		};
+
+		p2bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <3>;
+		};
+
+		aliases {
+			stdout = <&p2bc>;
+		};
+	};
+
+	part3 {
+		compatible = "partition";
+		label = "p3-linux";
+		cpus = <3 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma3 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma3>;
+			guest-addr = <0 0>;
+		};
+
+		p3bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <4>;
+		};
+
+		aliases {
+			stdout = <&p3bc>;
+		};
+	};
+
+	part4 {
+		compatible = "partition";
+		label = "p4-linux";
+		cpus = <4 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma4 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma4>;
+			guest-addr = <0 0>;
+		};
+
+		p4bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <5>;
+		};
+
+		aliases {
+			stdout = <&p4bc>;
+		};
+	};
+
+	part5 {
+		compatible = "partition";
+		label = "p5-linux";
+		cpus = <5 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma5 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma5>;
+			guest-addr = <0 0>;
+		};
+
+		p5bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <6>;
+		};
+
+		aliases {
+			stdout = <&p5bc>;
+		};
+	};
+
+	part6 {
+		compatible = "partition";
+		label = "p6-linux";
+		cpus = <6 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma6 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma6>;
+			guest-addr = <0 0>;
+		};
+
+		p6bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <7>;
+		};
+
+		aliases {
+			stdout = <&p6bc>;
+		};
+	};
+
+	part7 {
+		compatible = "partition";
+		label = "p7-linux";
+		cpus = <7 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma7 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma7>;
+			guest-addr = <0 0>;
+		};
+
+		p7bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <8>;
+		};
+
+		aliases {
+			stdout = <&p7bc>;
+		};
+	};
+
+	part8 {
+		compatible = "partition";
+		label = "p8-linux";
+		cpus = <8 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma8 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma8>;
+			guest-addr = <0 0>;
+		};
+
+		p8bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <9>;
+		};
+
+		aliases {
+			stdout = <&p8bc>;
+		};
+	};
+
+	part9 {
+		compatible = "partition";
+		label = "p9-linux";
+		cpus = <9 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma9 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma9>;
+			guest-addr = <0 0>;
+		};
+
+		p9bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <10>;
+		};
+
+		aliases {
+			stdout = <&p9bc>;
+		};
+	};
+
+	part10 {
+		compatible = "partition";
+		label = "p10-linux";
+		cpus = <10 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma10 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma10>;
+			guest-addr = <0 0>;
+		};
+
+		p10bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <11>;
+		};
+
+		aliases {
+			stdout = <&p10bc>;
+		};
+	};
+
+	part11 {
+		compatible = "partition";
+		label = "p11-linux";
+		cpus = <11 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma11 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma11>;
+			guest-addr = <0 0>;
+		};
+
+		p11bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <12>;
+		};
+
+		aliases {
+			stdout = <&p11bc>;
+		};
+	};
+
+	part12 {
+		compatible = "partition";
+		label = "p12-linux";
+		cpus = <12 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma12 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma12>;
+			guest-addr = <0 0>;
+		};
+
+		p12bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <13>;
+		};
+
+		aliases {
+			stdout = <&p12bc>;
+		};
+	};
+
+	part13 {
+		compatible = "partition";
+		label = "p13-linux";
+		cpus = <13 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma13 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma13>;
+			guest-addr = <0 0>;
+		};
+
+		p13bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <14>;
+		};
+
+		aliases {
+			stdout = <&p13bc>;
+		};
+	};
+
+	part14 {
+		compatible = "partition";
+		label = "p14-linux";
+		cpus = <14 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma14 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma14>;
+			guest-addr = <0 0>;
+		};
+
+		p14bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <15>;
+		};
+
+		aliases {
+			stdout = <&p14bc>;
+		};
+	};
+
+	part15 {
+		compatible = "partition";
+		label = "p15-linux";
+		cpus = <15 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma15 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma15>;
+			guest-addr = <0 0>;
+		};
+
+		p15bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <16>;
+		};
+
+		aliases {
+			stdout = <&p15bc>;
+		};
+	};
+
+	part16 {
+		compatible = "partition";
+		label = "p16-linux";
+		cpus = <16 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma16 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma16>;
+			guest-addr = <0 0>;
+		};
+
+		p16bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <17>;
+		};
+
+		aliases {
+			stdout = <&p16bc>;
+		};
+	};
+
+	part17 {
+		compatible = "partition";
+		label = "p17-linux";
+		cpus = <17 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma17 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma17>;
+			guest-addr = <0 0>;
+		};
+
+		p17bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <18>;
+		};
+
+		aliases {
+			stdout = <&p17bc>;
+		};
+	};
+
+	part18 {
+		compatible = "partition";
+		label = "p18-linux";
+		cpus = <18 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma18 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma18>;
+			guest-addr = <0 0>;
+		};
+
+		p18bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <19>;
+		};
+
+		aliases {
+			stdout = <&p18bc>;
+		};
+	};
+
+	part19 {
+		compatible = "partition";
+		label = "p19-linux";
+		cpus = <19 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma19 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma19>;
+			guest-addr = <0 0>;
+		};
+
+		p19bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <20>;
+		};
+
+		aliases {
+			stdout = <&p19bc>;
+		};
+	};
+
+	part20 {
+		compatible = "partition";
+		label = "p20-linux";
+		cpus = <20 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma20 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma20>;
+			guest-addr = <0 0>;
+		};
+
+		p20bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <21>;
+		};
+
+		aliases {
+			stdout = <&p20bc>;
+		};
+	};
+
+	part21 {
+		compatible = "partition";
+		label = "p21-linux";
+		cpus = <21 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma21 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma21>;
+			guest-addr = <0 0>;
+		};
+
+		p21bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <22>;
+		};
+
+		aliases {
+			stdout = <&p21bc>;
+		};
+	};
+
+	part22 {
+		compatible = "partition";
+		label = "p22-linux";
+		cpus = <22 1>;
+		guest-image = <0xf 0xe8020000 0 0 0 0x00e00000>;
+		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
+		dtb-window = <0 0x1000000 0 0x10000>;
+		no-dma-disable;
+		direct-guest-tlb-management;
+		direct-guest-tlb-miss;
+
+		gpma22 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&pma22>;
+			guest-addr = <0 0>;
+		};
+
+		p22bc: byte-channel {
+			compatible = "byte-channel";
+			endpoint = <&uartmux>;
+			mux-channel = <23>;
+		};
+
+		aliases {
+			stdout = <&p22bc>;
+		};
+	};
+};
