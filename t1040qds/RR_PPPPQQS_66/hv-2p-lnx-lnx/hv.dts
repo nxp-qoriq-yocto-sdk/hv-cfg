@@ -637,6 +637,11 @@
 			dma-window = <&dw_linux1>;
 		};
 
+		pme {
+			device = "pme";
+			dma-window = <&dw_linux1>;
+		};
+
 		qman {
 			device = "qman";
 			dma-window = <&dw_linux1>;
@@ -682,6 +687,11 @@
 
 			caam {
 				device = "crypto";
+				dma-window = <&dw_linux1>;
+			};
+
+			pme {
+				device = "pme";
 				dma-window = <&dw_linux1>;
 			};
 		};
@@ -843,7 +853,7 @@
 
 			node-update {
 				delete-prop = "fsl,usdpaa-portal";
-				delete-node = "crypto@0";
+				delete-node = "pme@0", "crypto@0";
 			};
 
 			stash-mem {
