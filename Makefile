@@ -1,6 +1,6 @@
 DESTDIR = .
 BOARDS = p2041rdb p3041ds p4080ds p5020ds p5040ds t1040qds t1040rdb \
-	 t2080qds t4240qds b4860qds
+	 t2080qds t4240qds t4240rdb b4860qds
 VER = $(shell git describe --tags)
 
 all install clean:
