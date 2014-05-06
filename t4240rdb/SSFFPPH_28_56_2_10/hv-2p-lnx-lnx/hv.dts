@@ -1379,32 +1379,62 @@
 			dma-window = <&dw_linux1>;
 		};
 
-		// FMAN0 RGMII - ethernet 4 assigned to this partition
-		dpa-ethernet@4 {
-			device = "/fsl,dpaa/ethernet@4";
+		// FMAN0 SGMII - ethernet 0 assigned to this partition
+		dpa-ethernet@0 {
+			device = "/fsl,dpaa/ethernet@0";
 		};
 
-		// FMAN0 XAUI -- ethernet 6 assigned to this partition
+		// FMAN0 SGMII - ethernet 1 assigned to this partition
+		dpa-ethernet@1 {
+			device = "/fsl,dpaa/ethernet@1";
+		};
+
+		// FMAN0 SGMII - ethernet 2 assigned to this partition
+		dpa-ethernet@2 {
+			device = "/fsl,dpaa/ethernet@2";
+		};
+
+		// FMAN0 SGMII - ethernet 3 assigned to this partition
+		dpa-ethernet@3 {
+			device = "/fsl,dpaa/ethernet@3";
+		};
+
+		// FMAN0 XGMII -- ethernet 6 assigned to this partition
 		dpa-ethernet@6 {
 			device = "/fsl,dpaa/ethernet@6";
 		};
 
-		// FMAN0 XAUI -- ethernet 7 assigned to this partition
+		// FMAN0 XGMII -- ethernet 7 assigned to this partition
 		dpa-ethernet@7 {
 			device = "/fsl,dpaa/ethernet@7";
 		};
 
-		// FMAN1 RGMII -- ethernet 12 assigned to this partition
-		dpa-ethernet@12 {
-			device = "/fsl,dpaa/ethernet@12";
+		// FMAN1 SGMII - ethernet 8 assigned to this partition
+		dpa-ethernet@8 {
+			device = "/fsl,dpaa/ethernet@8";
 		};
 
-		// FMAN1 XAUI -- ethernet 14 assigned to this partition
+		// FMAN1 SGMII - ethernet 9 assigned to this partition
+		dpa-ethernet@9 {
+			device = "/fsl,dpaa/ethernet@9";
+		};
+
+		// FMAN10 SGMII - ethernet 10 assigned to this partition
+		dpa-ethernet@10 {
+			device = "/fsl,dpaa/ethernet@10";
+		};
+
+		// FMAN11 SGMII - ethernet 11 assigned to this partition
+		dpa-ethernet@11 {
+			device = "/fsl,dpaa/ethernet@11";
+		};
+
+		// FMAN1 XGMII -- ethernet 14 assigned to this partition
 		dpa-ethernet@14 {
 			device = "/fsl,dpaa/ethernet@14";
 		};
 
-		// FMAN1 XAUI -- ethernet 15 assigned to this partition
+		// FMAN1 XGMII -- ethernet 15 assigned to this partition
 		dpa-ethernet@15 {
 			device = "/fsl,dpaa/ethernet@15";
 		};
@@ -1488,7 +1518,7 @@
 
 				// Shared with Linux2 (Shared-MAC)
 				// The interface has to be set to promiscuous mode!
-				dpa-ethernet@12 {
+				dpa-ethernet@6 {
 					compatible = "fsl,t4240-dpa-ethernet", "fsl,dpa-ethernet-shared";
 					fsl,qman-frame-queues-rx = <0x340 1 0x341 1 0x320 24>;
 					fsl,qman-frame-queues-tx = <0x342 1 0x343 1 0x300 24>;
@@ -1506,7 +1536,7 @@
 					fsl,bman-buffer-pools = <&part1_bp10>;
 				};
 
-				dpa-ethernet@12 {
+				dpa-ethernet@6 {
 					fsl,bman-buffer-pools = <&part1_bp11>;
 				};
 			};
