@@ -565,6 +565,7 @@
 		// Temporary until Linux uses enable LIODN hcall
 		no-dma-disable;
 		direct-guest-tlb-miss;
+		direct-guest-tlb-management;
 
 		gpma0 {
 			compatible = "guest-phys-mem-area";
@@ -1602,6 +1603,7 @@
 		// Temporary until Linux uses enable LIODN hcall
 		no-dma-disable;
 		direct-guest-tlb-miss;
+		direct-guest-tlb-management;
 
 		gpma0 {
 			compatible = "guest-phys-mem-area";
