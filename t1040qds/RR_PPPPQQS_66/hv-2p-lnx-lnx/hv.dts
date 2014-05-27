@@ -24,6 +24,12 @@
 		size = <0x0 0x40000000>;	// 1GB
 	};
 
+	lnx1_l2switch: lnx1_l2switch {
+		compatible = "phys-mem-area";
+		addr = <0xf 0xfe0fc000>;	// l2switch
+		size = <0x0 0x00001000>;	// 4KB
+	};
+
 	lnx2_pma: lnx2_pma {
 		compatible = "phys-mem-area";
 		addr = <0x0 0x40000000>;	// Linux
@@ -295,6 +301,15 @@
 			compatible = "guest-phys-mem-area";
 			phys-mem = <&pma15>;	// Interpartition between Linux1 - Linux2
 			guest-addr = <0 0x80000000>;
+			node-update {
+				delete-prop = "device_type";
+			};
+		};
+
+		gpma2 {
+			compatible = "guest-phys-mem-area";
+			phys-mem = <&lnx1_l2switch>;
+			guest-addr = <0xf 0xfe0fc000>;
 			node-update {
 				delete-prop = "device_type";
 			};
