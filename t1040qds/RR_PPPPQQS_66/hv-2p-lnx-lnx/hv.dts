@@ -548,6 +548,10 @@
 			dma-window = <&dw_linux1>;
 		};
 
+		scfg {
+			device = "/soc/global-utilities@fc000";
+		};
+
 		i2c@118000 {
 			device = "/soc/i2c@118000";
 		};
