@@ -44,7 +44,7 @@
 
 	hv_pma: hv_pma {
 		compatible = "phys-mem-area";
-		addr = <0x0 0x7f000000>;	// Hypervisor
+		addr = <0x0 0x7e000000>;	// Hypervisor
 		size = <0x0 0x01000000>;	// 16MB
 	};
 
