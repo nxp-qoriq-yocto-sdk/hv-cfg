@@ -978,7 +978,7 @@
 
 				// Shared with Linux2 (Shared-MAC)
 				// The interface has to be set to promiscuous mode!
-				dpa-ethernet@0 {
+				dpa-ethernet@8 {
 					compatible = "fsl,t2080-dpa-ethernet", "fsl,dpa-ethernet-shared";
 					fsl,qman-frame-queues-rx = <0x340 1 0x341 1 0x320 8>;
 					fsl,qman-frame-queues-tx = <0x342 1 0x343 1 0x300 8>;
@@ -996,7 +996,7 @@
 					fsl,bman-buffer-pools = <&part1_bp10>;
 				};
 
-				dpa-ethernet@0 {
+				dpa-ethernet@8 {
 					fsl,bman-buffer-pools = <&part1_bp11>;
 				};
 			};
@@ -1229,7 +1229,7 @@
 				// =====================================================
 				// Shared with Linux1 (Shared-MAC)
 				// The TX queues of this interface are the same with the
-				// TX queues of the interface dpa-ethernet@0 in
+				// TX queues of the interface dpa-ethernet@8 in
 				// partition 1; the RX queues are different
 				// =====================================================
 				dpa-ethernet@20 {
