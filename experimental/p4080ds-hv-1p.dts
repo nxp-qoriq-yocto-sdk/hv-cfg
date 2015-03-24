@@ -643,7 +643,7 @@
 
 		node-update {
 			chosen {
-				bootargs = "usdpaa_mem=64M bportals=0 qportals=0";
+				bootargs = "usdpaa_mem=64M";
 			};
 		};
 
