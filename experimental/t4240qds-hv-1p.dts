@@ -516,7 +516,7 @@
 		cpus = <0 24>;
 		guest-image = <0xf 0xe8020000 0 0 0 0x700000>;
 		linux-rootfs = <0xf 0xe9300000 0 0x01300000 0 0x02800000>;
-		dtb-window = <0 0x1000000 0 0x20000>;
+		dtb-window = <0 0x1000000 0 0x40000>;
 
 		// Temporary until Linux uses enable LIODN hcall
 		no-dma-disable;
@@ -654,6 +654,94 @@
 
 		bman-portal@6c000 {
 			device = "/bman-portals/bman-portal@6c000";
+		};
+
+		bman-portal@70000 {
+			device = "/bman-portals/bman-portal@70000";
+		};
+
+		bman-portal@74000 {
+			device = "/bman-portals/bman-portal@74000";
+		};
+
+		bman-portal@78000 {
+			device = "/bman-portals/bman-portal@78000";
+		};
+
+		bman-portal@7c000 {
+			device = "/bman-portals/bman-portal@7c000";
+		};
+
+		bman-portal@80000 {
+			device = "/bman-portals/bman-portal@80000";
+		};
+
+		bman-portal@84000 {
+			device = "/bman-portals/bman-portal@84000";
+		};
+
+		bman-portal@88000 {
+			device = "/bman-portals/bman-portal@88000";
+		};
+
+		bman-portal@8c000 {
+			device = "/bman-portals/bman-portal@8c000";
+		};
+
+		bman-portal@90000 {
+			device = "/bman-portals/bman-portal@90000";
+		};
+
+		bman-portal@94000 {
+			device = "/bman-portals/bman-portal@94000";
+		};
+
+		bman-portal@98000 {
+			device = "/bman-portals/bman-portal@98000";
+		};
+
+		bman-portal@9c000 {
+			device = "/bman-portals/bman-portal@9c000";
+		};
+
+		bman-portal@a0000 {
+			device = "/bman-portals/bman-portal@a0000";
+		};
+
+		bman-portal@a4000 {
+			device = "/bman-portals/bman-portal@a4000";
+		};
+
+		bman-portal@a8000 {
+			device = "/bman-portals/bman-portal@a8000";
+		};
+
+		bman-portal@ac000 {
+			device = "/bman-portals/bman-portal@ac000";
+		};
+
+		bman-portal@b0000 {
+			device = "/bman-portals/bman-portal@b0000";
+		};
+
+		bman-portal@b4000 {
+			device = "/bman-portals/bman-portal@b4000";
+		};
+
+		bman-portal@b8000 {
+			device = "/bman-portals/bman-portal@b8000";
+		};
+
+		bman-portal@bc000 {
+			device = "/bman-portals/bman-portal@bc000";
+		};
+
+		bman-portal@c0000 {
+			device = "/bman-portals/bman-portal@c0000";
+		};
+
+		bman-portal@c4000 {
+			device = "/bman-portals/bman-portal@c4000";
 		};
 
 		// Bman buffer pools assigned to this partition
@@ -1181,6 +1269,402 @@
 			};
 		};
 
+		qman-portal@70000 {
+			device = "/qman-portals@ff6000000/qman-portal@70000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal28>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@74000 {
+			device = "/qman-portals@ff6000000/qman-portal@74000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal29>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@78000 {
+			device = "/qman-portals@ff6000000/qman-portal@78000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal30>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@7c000 {
+			device = "/qman-portals@ff6000000/qman-portal@7c000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal31>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@80000 {
+			device = "/qman-portals@ff6000000/qman-portal@80000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal32>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@84000 {
+			device = "/qman-portals@ff6000000/qman-portal@84000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal33>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@88000 {
+			device = "/qman-portals@ff6000000/qman-portal@88000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal34>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@8c000 {
+			device = "/qman-portals@ff6000000/qman-portal@8c000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal35>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@90000 {
+			device = "/qman-portals@ff6000000/qman-portal@90000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal36>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@94000 {
+			device = "/qman-portals@ff6000000/qman-portal@94000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal37>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@98000 {
+			device = "/qman-portals@ff6000000/qman-portal@98000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal38>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@9c000 {
+			device = "/qman-portals@ff6000000/qman-portal@9c000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal39>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@a0000 {
+			device = "/qman-portals@ff6000000/qman-portal@a0000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal40>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@a4000 {
+			device = "/qman-portals@ff6000000/qman-portal@a4000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal41>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@a8000 {
+			device = "/qman-portals@ff6000000/qman-portal@a8000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal42>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@ac000 {
+			device = "/qman-portals@ff6000000/qman-portal@ac000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal43>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@b0000 {
+			device = "/qman-portals@ff6000000/qman-portal@b0000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal44>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@b4000 {
+			device = "/qman-portals@ff6000000/qman-portal@b4000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal45>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@b8000 {
+			device = "/qman-portals@ff6000000/qman-portal@b8000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal46>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@bc000 {
+			device = "/qman-portals@ff6000000/qman-portal@bc000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal47>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@c0000 {
+			device = "/qman-portals@ff6000000/qman-portal@c0000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal48>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
+		qman-portal@c4000 {
+			device = "/qman-portals@ff6000000/qman-portal@c4000";
+
+			stash-mem {
+				liodn-index = <1>;
+				dma-window = <&dw_linux1>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+
+			stash-dqrr {
+				liodn-index = <0>;
+				dma-window = <&dw_dqrr_qportal49>;
+				operation-mapping = <0>;
+				stash-dest = <3>;
+			};
+		};
+
 		memory-controller@8000 {
 			device = "/soc/memory-controller@8000";
 		};
@@ -1294,6 +1778,16 @@
 			dma-window = <&dw_linux1>;
 		};
 
+		dce {
+			device = "dce";
+			dma-window = <&dw_linux1>;
+		};
+
+		rman {
+			device = "rman";
+			dma-window = <&dw_linux1>;
+		};
+
 		qman {
 			device = "qman";
 			dma-window = <&dw_linux1>;
@@ -1336,6 +1830,11 @@
 			device = "/fsl,dpaa/ethernet@12";
 		};
 
+		// FMAN1 SGMII -- ethernet 13 assigned to this partition
+		dpa-ethernet@13 {
+			device = "/fsl,dpaa/ethernet@13";
+		};
+
 		// FMAN1 XAUI -- ethernet 14 assigned to this partition
 		dpa-ethernet@14 {
 			device = "/fsl,dpaa/ethernet@14";
@@ -1368,6 +1867,16 @@
 
 			pme {
 				device = "pme";
+				dma-window = <&dw_linux1>;
+			};
+
+			rman {
+				device = "rman";
+				dma-window = <&dw_linux1>;
+			};
+
+			dce {
+				device = "dce";
 				dma-window = <&dw_linux1>;
 			};
 		};
