@@ -1400,6 +1400,11 @@
 			device = "/fsl,dpaa/ethernet@12";
 		};
 
+		// FMAN1 SGMII -- ethernet 13 assigned to this partition
+		dpa-ethernet@13 {
+			device = "/fsl,dpaa/ethernet@13";
+		};
+
 		// FMAN1 XAUI -- ethernet 14 assigned to this partition
 		dpa-ethernet@14 {
 			device = "/fsl,dpaa/ethernet@14";
