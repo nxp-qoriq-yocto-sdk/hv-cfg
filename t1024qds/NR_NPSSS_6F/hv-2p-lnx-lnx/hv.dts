@@ -432,6 +432,10 @@
 			dma-window = <&dw_linux1>;
 		};
 
+		clockgen {
+			device = "/soc/global-utilities@e1000";
+		};
+
 		scfg {
 			device = "/soc/global-utilities@fc000";
 		};
@@ -547,6 +551,41 @@
 		};
 
 		node-update {
+			#address-cells = <0x2>;
+			#size-cells = <0x2>;
+			reserved-memory {
+				#address-cells = <0x2>;
+				#size-cells = <0x2>;
+				ranges;
+
+				bman-fbpr {
+					size = <0x0 0x1000000>;
+					alignment = <0x0 0x1000000>;
+					compatible = "fsl,bman-fbpr";
+					alloc-ranges = <0x0 0x0 0x10000 0x0>;
+					linux,phandle = <0x21>;
+					phandle = <0x21>;
+				};
+
+				qman-fqd {
+					size = <0x0 0x400000>;
+					alignment = <0x0 0x400000>;
+					compatible = "fsl,qman-fqd";
+					alloc-ranges = <0x0 0x0 0x10000 0x0>;
+					linux,phandle = <0x1e>;
+					phandle = <0x1e>;
+				};
+
+				qman-pfdr {
+					size = <0x0 0x2000000>;
+					alignment = <0x0 0x2000000>;
+					compatible = "fsl,qman-pfdr";
+					alloc-ranges = <0x0 0x0 0x10000 0x0>;
+					linux,phandle = <0x1f>;
+					phandle = <0x1f>;
+				};
+			};
+
 			part1_bp10: buffer-pool@10 {
 				compatible = "fsl,t1024-bpool", "fsl,bpool";
 				fsl,bpid = <10>;
@@ -583,7 +622,7 @@
 			};
 
 			chosen {
-				bootargs = "usdpaa_mem=64M bportals=0 qportals=0";
+				bootargs = "bportals=0 qportals=0";
 			};
 		};
 
@@ -789,7 +828,7 @@
 				};
 			};
 			chosen {
-				bootargs = "usdpaa_mem=64M bportals=0 qportals=0";
+				bootargs = "bportals=0 qportals=0";
 			};
 		};
 
