@@ -493,6 +493,10 @@
 			dma-window = <&dw_linux1>;
 		};
 
+		clockgen {
+			device = "/soc/global-utilities@e1000";
+		};
+
 		i2c@118000 {
 			device = "/soc/i2c@118000";
 		};
@@ -647,6 +651,41 @@
 		};
 
 		node-update {
+			#address-cells = <0x2>;
+			#size-cells = <0x2>;
+			reserved-memory {
+				#address-cells = <0x2>;
+				#size-cells = <0x2>;
+				ranges;
+
+				bman-fbpr {
+					size = <0x0 0x1000000>;
+					alignment = <0x0 0x1000000>;
+					compatible = "fsl,bman-fbpr";
+					alloc-ranges = <0x0 0x0 0x10 0x0>;
+					linux,phandle = <0x2f>;
+					phandle = <0x2f>;
+				};
+
+				qman-fqd {
+					size = <0x0 0x400000>;
+					alignment = <0x0 0x400000>;
+					compatible = "fsl,qman-fqd";
+					alloc-ranges = <0x0 0x0 0x10 0x0>;
+					linux,phandle = <0x2c>;
+					phandle = <0x2c>;
+				};
+
+				qman-pfdr {
+					size = <0x0 0x2000000>;
+					alignment = <0x0 0x2000000>;
+					compatible = "fsl,qman-pfdr";
+					alloc-ranges = <0x0 0x0 0x10 0x0>;
+					linux,phandle = <0x2d>;
+					phandle = <0x2d>;
+				};
+			};
+
 			// =====================================================
 			// The buffer size value of 1728 (multiple of ODD cache
 			// line) is calculated according to dpa_extra_headroom
@@ -701,7 +740,7 @@
 			};
 
 			chosen {
-				bootargs = "usdpaa_mem=64M bportals=0 qportals=0";
+				bootargs = "bportals=0 qportals=0";
 			};
 		};
 
@@ -918,7 +957,7 @@
 			};
 
 			chosen {
-				bootargs = "usdpaa_mem=64M bportals=0 qportals=0";
+				bootargs = "bportals=0 qportals=0";
 			};
 		};
 
