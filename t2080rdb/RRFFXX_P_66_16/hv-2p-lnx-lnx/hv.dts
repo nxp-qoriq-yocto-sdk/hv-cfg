@@ -773,6 +773,10 @@
 			dma-window = <&dw_linux1>;
 		};
 
+		clockgen {
+			device = "/soc/global-utilities@e1000";
+		};
+
 		i2c@118000 {
 			device = "/soc/i2c@118000";
 		};
@@ -936,6 +940,59 @@
 		};
 
 		node-update {
+			#address-cells = <0x2>;
+			#size-cells = <0x2>;
+			reserved-memory {
+				#address-cells = <0x2>;
+				#size-cells = <0x2>;
+				ranges;
+
+				bman-fbpr {
+					size = <0x0 0x1000000>;
+					alignment = <0x0 0x1000000>;
+					compatible = "fsl,bman-fbpr";
+					alloc-ranges = <0x0 0x0 0x10000 0x0>;
+					linux,phandle = <0x28>;
+					phandle = <0x28>;
+				};
+
+				qman-fqd {
+					size = <0x0 0x400000>;
+					alignment = <0x0 0x400000>;
+					compatible = "fsl,qman-fqd";
+					alloc-ranges = <0x0 0x0 0x10000 0x0>;
+					linux,phandle = <0x2a>;
+					phandle = <0x2a>;
+				};
+
+				qman-pfdr {
+					size = <0x0 0x2000000>;
+					alignment = <0x0 0x2000000>;
+					compatible = "fsl,qman-pfdr";
+					alloc-ranges = <0x0 0x0 0x10000 0x0>;
+					linux,phandle = <0x2b>;
+					phandle = <0x2b>;
+				};
+
+				pme-pdsr {
+					compatible = "fsl,pme-pdsr";
+					alloc-ranges = <0x0 0x0 0x10000 0x0>;
+					size = <0x0 0x1000000>;
+					alignment = <0x0 0x1000000>;
+					linux,phandle = <0x25>;
+					phandle = <0x25>;
+				};
+
+				pme-sre {
+					compatible = "fsl,pme-sre";
+					alloc-ranges = <0x0 0x0 0x10000 0x0>;
+					size = <0x0 0xa00000>;
+					alignment = <0x0 0xa00000>;
+					linux,phandle = <0x26>;
+					phandle = <0x26>;
+				};
+			};
+
 			// =====================================================
 			// The buffer size value of 1728 (multiple of ODD cache
 			// line) is calculated according to dpa_extra_headroom
@@ -986,7 +1043,7 @@
 			};
 
 			chosen {
-				bootargs = "usdpaa_mem=64M bportals=0 qportals=0";
+				bootargs = "bportals=0 qportals=0";
 			};
 		};
 
@@ -1242,7 +1299,7 @@
 			};
 
 			chosen {
-				bootargs = "usdpaa_mem=64M bportals=0 qportals=0";
+				bootargs = "bportals=0 qportals=0";
 			};
 		};
 
