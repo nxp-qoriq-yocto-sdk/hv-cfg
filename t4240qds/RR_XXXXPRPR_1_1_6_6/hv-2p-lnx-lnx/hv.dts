@@ -1399,6 +1399,26 @@
 			device = "/fsl,dpaa/ethernet@7";
 		};
 
+		// FMAN1 RGMII -- ethernet 8 assigned to this partition
+		dpa-ethernet@8 {
+			device = "/fsl,dpaa/ethernet@8";
+		};
+
+		// FMAN1 RGMII -- ethernet 9 assigned to this partition
+		dpa-ethernet@9 {
+			device = "/fsl,dpaa/ethernet@9";
+		};
+
+		// FMAN1 RGMII -- ethernet 10 assigned to this partition
+		dpa-ethernet@10 {
+			device = "/fsl,dpaa/ethernet@10";
+		};
+
+		// FMAN1 RGMII -- ethernet 11 assigned to this partition
+		dpa-ethernet@11 {
+			device = "/fsl,dpaa/ethernet@11";
+		};
+
 		// FMAN1 RGMII -- ethernet 12 assigned to this partition
 		dpa-ethernet@12 {
 			device = "/fsl,dpaa/ethernet@12";
