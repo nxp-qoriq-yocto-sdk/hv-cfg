@@ -668,8 +668,8 @@
 				};
 
 				qman-fqd {
-					size = <0x0 0x400000>;
-					alignment = <0x0 0x400000>;
+					size = <0x0 0x800000>;
+					alignment = <0x0 0x800000>;
 					compatible = "fsl,qman-fqd";
 					alloc-ranges = <0x0 0x0 0x10 0x0>;
 					linux,phandle = <0x2c>;
